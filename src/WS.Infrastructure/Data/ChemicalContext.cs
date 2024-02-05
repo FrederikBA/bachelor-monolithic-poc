@@ -1,6 +1,8 @@
-﻿namespace WS.Infrastructure.Data;
+﻿using Microsoft.EntityFrameworkCore;
 
-public class ChemicalContext
+namespace WS.Infrastructure.Data;
+
+public class ChemicalContext : DbContext
 {
     
 }
