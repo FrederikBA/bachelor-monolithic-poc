@@ -4,6 +4,7 @@ public class ProductCategory : BaseEntity
 {
     public int ProductGroupId { get; set; }
     public Product? Product { get; set; }
+    public ProductGroup ProductGroup { get; set; }
     public string? Category { get; set; }
     public string? Remarks { get; set; }
     public DateTime Created { get; set; }

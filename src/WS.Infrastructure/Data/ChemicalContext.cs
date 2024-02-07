@@ -28,10 +28,10 @@ public class ChemicalContext : DbContext
             .WithMany()
             .HasForeignKey(p => p.ProductCategoryId);
         
-        //ProductCategory to ProductGroup (one to many)
+        //ProductCategory to ProductGroup (many to one)
         modelBuilder.Entity<ProductCategory>()
-            .HasOne(productCategory => productCategory.Product)
-            .WithMany()
+            .HasOne(productCategory => productCategory.ProductGroup)
+            .WithMany(productGroup => productGroup.ProductCategories)
             .HasForeignKey(p => p.ProductGroupId);
     }
 }

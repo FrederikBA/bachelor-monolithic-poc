@@ -12,7 +12,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ChemicalCo
         const string connectionString = "Server=localhost;Database=KemiDB;User Id=sa;Password=thisIsSuperStrong1234;TrustServerCertificate=True";
         
         var optionsBuilder = new DbContextOptionsBuilder<ChemicalContext>();
-        optionsBuilder.UseSqlServer("");
+        optionsBuilder.UseSqlServer(connectionString);
 
         return new ChemicalContext(optionsBuilder.Options);
     }
