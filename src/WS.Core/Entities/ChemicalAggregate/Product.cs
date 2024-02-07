@@ -2,7 +2,9 @@ using WS.Core.Interfaces;
 
 namespace WS.Core.Entities.ChemicalAggregate;
 
-public class Product : IAggregateRoot
+public class Product : BaseEntity, IAggregateRoot
 {
-    
+    public string? Name { get; set; }
+    public int ProductCategoryId { get; set; }
+    public ProductCategory? ProductCategory { get; set; }
 }
