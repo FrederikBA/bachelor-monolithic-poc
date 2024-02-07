@@ -16,17 +16,18 @@ public class ChemicalContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //Primary keys
-        modelBuilder.Entity<Product>().HasKey(p => p.Id);
-        modelBuilder.Entity<ProductCategory>().HasKey(p => p.Id);
-        modelBuilder.Entity<ProductGroup>().HasKey(p => p.Id);
+        modelBuilder.Entity<Product>().HasKey(product => product.Id);
+        modelBuilder.Entity<ProductCategory>().HasKey(productCategory => productCategory.Id);
+        modelBuilder.Entity<ProductGroup>().HasKey(productGroup => productGroup.Id);
         
         //Relationships
         
-        //Product to ProductCategory (one to many)
-        modelBuilder.Entity<Product>()
-            .HasOne(product => product.ProductCategory)
-            .WithMany()
-            .HasForeignKey(p => p.ProductCategoryId);
+        //Product to ProductCategory (one to one)
+        modelBuilder.Entity<ProductCategory>()
+            .HasOne(productCategory => productCategory.Product)
+            .WithOne(product => product.ProductCategory)
+            .HasForeignKey<ProductCategory>(product => product.Id);
+
         
         //ProductCategory to ProductGroup (many to one)
         modelBuilder.Entity<ProductCategory>()

@@ -7,6 +7,4 @@ public class ProductCategory : BaseEntity
     public ProductGroup ProductGroup { get; set; }
     public string? Category { get; set; }
     public string? Remarks { get; set; }
-    public DateTime Created { get; set; }
-    public DateTime Updated { get; set; }
 }
