@@ -24,4 +24,6 @@
       <ProjectReference Include="..\WS.Core\WS.Core.csproj" />
     </ItemGroup>
 
+
+
 </Project>
