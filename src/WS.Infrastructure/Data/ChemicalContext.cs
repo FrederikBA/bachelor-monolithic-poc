@@ -23,10 +23,10 @@ public class ChemicalContext : DbContext
         //Relationships
         
         //Product to ProductCategory (one to one)
-        modelBuilder.Entity<ProductCategory>()
-            .HasOne(productCategory => productCategory.Product)
-            .WithOne(product => product.ProductCategory)
-            .HasForeignKey<ProductCategory>(product => product.Id);
+        modelBuilder.Entity<Product>()
+            .HasOne(product => product.ProductCategory)
+            .WithOne(productCategory => productCategory.Product)
+            .HasForeignKey<Product>(productCategory => productCategory.Id);
 
         
         //ProductCategory to ProductGroup (many to one)
