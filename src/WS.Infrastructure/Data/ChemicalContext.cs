@@ -7,16 +7,16 @@ namespace WS.Infrastructure.Data;
 public class ChemicalContext : DbContext
 {
     //Product Aggregate
-    public DbSet<Product> Products { get; set; }
-    public DbSet<ProductCategory> ProductCategories { get; set; }
-    public DbSet<ProductGroup> ProductGroups { get; set; }
+    public DbSet<Product>? Products { get; set; }
+    public DbSet<ProductCategory>? ProductCategories { get; set; }
+    public DbSet<ProductGroup>? ProductGroups { get; set; }
     
     //WarningSentence Aggregate
-    public DbSet<WarningSentence> WarningSentences { get; set; }
-    public DbSet<WarningCategory> WarningCategories { get; set; }
-    public DbSet<WarningType> WarningTypes { get; set; }
-    public DbSet<WarningSignalWord> WarningSignalWords { get; set; }
-    public DbSet<WarningPictogram> WarningPictograms { get; set; }
+    public DbSet<WarningSentence>? WarningSentences { get; set; }
+    public DbSet<WarningCategory>? WarningCategories { get; set; }
+    public DbSet<WarningType>? WarningTypes { get; set; }
+    public DbSet<WarningSignalWord>? WarningSignalWords { get; set; }
+    public DbSet<WarningPictogram>? WarningPictograms { get; set; }
     
     public ChemicalContext(DbContextOptions<ChemicalContext> options) : base(options)
     {
