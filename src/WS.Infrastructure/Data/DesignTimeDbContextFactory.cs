@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using WS.Infrastructure.Data;
 
-namespace Orders.Infrastructure.Data;
+namespace WS.Infrastructure.Data;
 
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ChemicalContext>
 {

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WS.Infrastructure.Data;
 
@@ -10,9 +11,11 @@ using WS.Infrastructure.Data;
 namespace WS.Infrastructure.Migrations
 {
     [DbContext(typeof(ChemicalContext))]
-    partial class ChemicalContextModelSnapshot : ModelSnapshot
+    [Migration("20240212133210_AddWarningSentenceAggregate")]
+    partial class AddWarningSentenceAggregate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,21 +23,6 @@ namespace WS.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ProductWarningSentence", b =>
-                {
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WarningSentencesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductsId", "WarningSentencesId");
-
-                    b.HasIndex("WarningSentencesId");
-
-                    b.ToTable("ProductWarningSentences", (string)null);
-                });
 
             modelBuilder.Entity("WS.Core.Entities.ChemicalAggregate.Product", b =>
                 {
@@ -208,21 +196,6 @@ namespace WS.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("WarningTypes");
-                });
-
-            modelBuilder.Entity("ProductWarningSentence", b =>
-                {
-                    b.HasOne("WS.Core.Entities.ChemicalAggregate.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WS.Core.Entities.WSAggregate.WarningSentence", null)
-                        .WithMany()
-                        .HasForeignKey("WarningSentencesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("WS.Core.Entities.ChemicalAggregate.Product", b =>

@@ -6,4 +6,5 @@ public class WarningPictogram : BaseEntity
     public string? Pictogram { get; set; }
     public string? Extension { get; set; }
     public int Priority { get; set; }
+    public List<WarningSentence>? WarningSentences { get; set; }
 }

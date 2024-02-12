@@ -1,3 +1,4 @@
+using WS.Core.Entities.ChemicalAggregate;
 using WS.Core.Interfaces;
 
 namespace WS.Core.Entities.WSAggregate;
@@ -12,4 +13,5 @@ public class WarningSentence : BaseEntity, IAggregateRoot
     public WarningCategory? WarningCategory { get; set; }
     public WarningSignalWord? WarningSignalWordd { get; set; }
     public WarningPictogram? WarningPictogram { get; set; }
+    public List<Product>? Products { get; set; }
 }
