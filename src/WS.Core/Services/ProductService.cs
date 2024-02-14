@@ -1,6 +1,7 @@
 using WS.Core.Entities.ChemicalAggregate;
 using WS.Core.Interfaces.DomainServices;
 using WS.Core.Interfaces.Repositories;
+using WS.Core.Specifications;
 
 namespace WS.Core.Services;
 
@@ -13,8 +14,9 @@ public class ProductService : IProductService
         _productReadRepository = productReadRepository;
     }
 
-    public Task<List<Product>> GetAllProductsAsync()
+    public async Task<List<Product>> GetAllProductsAsync()
     {
-        throw new NotImplementedException();
+        var products = await _productReadRepository.ListAsync(new GetProductsFullSpec());
+        return products;
     }
 }

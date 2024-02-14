@@ -23,9 +23,10 @@ public class ProductUnitTests
     {
         //Arrange
         var testProducts = ProductTestHelper.GetTestProducts();
-        
-        _productReadRepositoryMock.Setup(x => 
-            x.ListAsync(It.IsAny<ISpecification<Product>>(), new CancellationToken()));
+
+        _productReadRepositoryMock.Setup(x =>
+                x.ListAsync(It.IsAny<ISpecification<Product>>(), new CancellationToken()))
+            .ReturnsAsync(testProducts);
 
         //Act
         var result = await _productService.GetAllProductsAsync();
