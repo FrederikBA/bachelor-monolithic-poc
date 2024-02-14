@@ -10,6 +10,7 @@
    - [Backlog](#backlog)
 3. [Architecture & Design](#architecture--design)
    - [Domain Model](#domain-model)
+   - [Use Case Diagram](#use-case-diagram)
    - [Database Schema (SQL)](#database-schema-sql)
 
 ## System Requirements
