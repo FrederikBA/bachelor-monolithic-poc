@@ -1,4 +1,4 @@
-# Bachelor Project - Monolithic Version #
+# Bachelor / Internship Project - Monolithic Version #
 
 ## Contributors:
 - **Frederik Bilgrav Andersen**: cph-fa116@cphbusiness.dk
