@@ -54,7 +54,12 @@ VALUES
     (6, 'Husholdningskemikalier');
 
 -- Warning Types
+INSERT INTO [dbo].[WarningTypes] ([Type], [Priority])
+VALUES
+('R', 2),
+('H', 1)
 
+-- Warning Categories
 -- Inserting categories for Warning Type ID 1
 INSERT INTO [dbo].[WarningCategories] ([WarningTypeId], [SortOrder], [Text])
 VALUES
