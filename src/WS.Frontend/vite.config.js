@@ -7,4 +7,7 @@ export default defineConfig({
     outDir: '../ws.web/wwwroot'
   },
   plugins: [react()],
+  server: {
+    port: 3000,
+  }
 })
