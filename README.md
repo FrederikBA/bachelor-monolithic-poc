@@ -15,6 +15,11 @@
 ### Requirements Specification
 ![Requirements PDF](requirements/SHW_KemiDB___Warning_Sentences_Requirements.pdf)
 
+## Scrum
+
+### Taiga Board
+![Taiga Backlog](https://tree.taiga.io/project/frederikba-shw-warning-sentences-standalone-application/backlog)
+
 ## Architecture & Design
 
 ### Domain Model
