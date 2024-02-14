@@ -18,7 +18,7 @@
 ## Scrum
 
 ### Taiga Board
-![Taiga Backlog](https://tree.taiga.io/project/frederikba-shw-warning-sentences-standalone-application/backlog)
+[Taiga Backlog](https://tree.taiga.io/project/frederikba-shw-warning-sentences-standalone-application/backlog)
 
 ## Architecture & Design
 
