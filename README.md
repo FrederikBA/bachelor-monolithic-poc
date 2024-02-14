@@ -6,4 +6,4 @@
 ## Architecture & Design
 
 ### Legacy System Domain Model
-![Domain Model](images/Domain Model.png)
+![Domain Model](images/Domain%20Model.png)
