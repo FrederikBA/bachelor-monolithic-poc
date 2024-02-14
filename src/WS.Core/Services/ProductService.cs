@@ -2,7 +2,7 @@ using WS.Core.Entities.ChemicalAggregate;
 using WS.Core.Interfaces.DomainServices;
 using WS.Core.Interfaces.Repositories;
 
-namespace WS.Core.DomainServices;
+namespace WS.Core.Services;
 
 public class ProductService : IProductService
 {
