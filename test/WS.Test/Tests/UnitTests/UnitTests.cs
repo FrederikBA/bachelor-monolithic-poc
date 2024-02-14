@@ -1,4 +1,4 @@
-namespace WS.Test;
+namespace WS.Test.Tests.UnitTests;
 
 public class UnitTests
 {

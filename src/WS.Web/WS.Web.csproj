@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\WS.Core\WS.Core.csproj" />
+      <ProjectReference Include="..\WS.Infrastructure\WS.Infrastructure.csproj" />
     </ItemGroup>
 
 

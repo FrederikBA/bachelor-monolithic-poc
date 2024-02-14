@@ -1,3 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using WS.Core.Interfaces.DomainServices;
+using WS.Core.Interfaces.Repositories;
+using WS.Core.Services;
+using WS.Infrastructure.Data;
+using WS.Web.Interfaces;
+using WS.Web.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //CORS
@@ -14,12 +22,27 @@ builder.Services.AddCors(options =>
         });
 });
 
+//DBContext
+builder.Services.AddDbContext<ChemicalContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DbContext"));
+});
+
 //API Controllers
 builder.Services.AddControllers();
 
 //Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Build repositories
+builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
+//Build services
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped<IProductViewModelService, ProductViewModelService>();
 
 var app = builder.Build();
 
