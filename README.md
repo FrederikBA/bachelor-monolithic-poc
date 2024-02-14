@@ -6,7 +6,9 @@
 ## Table of Contents
 1. [System Requirements](#system-requirements)
    - [Requirements Specification](#requirements-specification)
-2. [Architecture & Design](#architecture--design)
+2. [Scrum](#scrum)
+   - [Backlog](#backlog)
+3. [Architecture & Design](#architecture--design)
    - [Domain Model](#domain-model)
    - [Database Schema (SQL)](#database-schema-sql)
 
@@ -17,7 +19,7 @@
 
 ## Scrum
 
-### Taiga Board
+### Backlog
 [Taiga Backlog](https://tree.taiga.io/project/frederikba-shw-warning-sentences-standalone-application/backlog)
 
 ## Architecture & Design
