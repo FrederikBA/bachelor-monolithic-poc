@@ -53,6 +53,30 @@ VALUES
     (6, 'Industrikemikalier'),
     (6, 'Husholdningskemikalier');
 
+-- Products
+-- Inserting chemicals for 'Motorolie' category
+INSERT INTO [dbo].[Products] ([Id], [Name], [ProductCategoryId])
+VALUES
+    (1, 'Syntetisk motorolie', 1),
+    (2, 'Mineral motorolie', 1),
+    (3, 'Semi-syntetisk motorolie', 1);
+
+-- Inserting chemicals for 'Smøremidler' category
+INSERT INTO [dbo].[Products] ([Id], [Name], [ProductCategoryId])
+VALUES
+    (4, 'Smørefedt', 2),
+    (5, 'Maskinsmøring', 2),
+    (6, 'Glideolie', 2);
+
+-- Inserting chemicals for 'Hydraulikolie' category
+INSERT INTO [dbo].[Products] ([Id], [Name], [ProductCategoryId])
+VALUES
+    (7, 'Højtrykshydraulikolie', 3),
+    (8, 'Miljøvenlig hydraulikolie', 3),
+    (9, 'Industriel hydraulikolie', 3);
+
+
+-- Warning Types
 
 -- Inserting categories for Warning Type ID 1
 INSERT INTO [dbo].[WarningCategories] ([WarningTypeId], [SortOrder], [Text])
