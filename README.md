@@ -13,7 +13,7 @@
 ## System Requirements
 
 ### Requirements Specification
-![Requirements Specification](requirements/SHW_KemiDB___Warning_Sentences_Requirements.pdf)
+![Requirements PDF](requirements/SHW_KemiDB___Warning_Sentences_Requirements.pdf)
 
 ## Architecture & Design
 
