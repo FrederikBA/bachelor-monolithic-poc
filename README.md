@@ -4,9 +4,16 @@
 - **Frederik Bilgrav Andersen**: cph-fa116@cphbusiness.dk
 
 ## Table of Contents
-1. [Architecture & Design](#architecture--design)
+1. [System Requirements](#system-requirements)
+   - [Requirements Specification](#requirements-specification)
+2. [Architecture & Design](#architecture--design)
    - [Domain Model](#domain-model)
    - [Database Schema (SQL)](#database-schema-sql)
+
+## System Requirements
+
+### Requirements Specification
+![Requirements Specification](requirements/SHW_KemiDB___Warning_Sentences_Requirements.pdf)
 
 ## Architecture & Design
 
