@@ -27,5 +27,8 @@
 ### Domain Model
 ![Domain Model](images/Domain%20Model.png)
 
+### Use Case Diagram
+![Use Case Diagram](images/Use%20Case%20Diagram.png)
+
 ### Database Schema (SQL)
 ![Database Schema](images/KemiDB%20Schema%20-%20Monolithic.png)
