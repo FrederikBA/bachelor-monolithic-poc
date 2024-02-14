@@ -20,10 +20,18 @@ public class ProductViewModelService : IProductViewModelService
         
         var productViewModels = productEntities.Select(product => new ProductViewModel
         {
+            Id = product.Id,
             Name = product.Name,
             Category = new ProductCategoryViewModel
             {
-                Category = product.ProductCategory?.Category
+                Id = product.ProductCategory?.Id ?? 0,
+                Category = product.ProductCategory?.Category,
+                ProductGroup = new ProductGroupViewModel
+                {
+                    Id = product.ProductCategory?.ProductGroup?.Id ?? 0,
+                    GroupName = product.ProductCategory?.ProductGroup?.GroupName,
+                    Remarks = product.ProductCategory?.ProductGroup?.Remarks
+                }
             }
         }).ToList();
         

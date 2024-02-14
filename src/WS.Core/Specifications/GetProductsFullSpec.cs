@@ -7,6 +7,7 @@ public sealed class GetProductsFullSpec : Specification<Product>
 {
     public GetProductsFullSpec()
     {
-        Query.Include(product => product.ProductCategory);
+        Query.Include(product => product.ProductCategory)
+            .ThenInclude(category => category!.ProductGroup);
     }
 }
