@@ -1,13 +1,12 @@
 # Bachelor Project - Monolithic Version #
 
-## Table of Contents
-1. [Contributors](#contributors)
-2. [Architecture & Design](#architecture--design)
-   - [Domain Model](#domain-model)
-   - [Database Schema (SQL)](#database-schema-sql)
-
 ## Contributors:
 - **Frederik Bilgrav Andersen**: cph-fa116@cphbusiness.dk
+
+## Table of Contents
+1. [Architecture & Design](#architecture--design)
+   - [Domain Model](#domain-model)
+   - [Database Schema (SQL)](#database-schema-sql)
 
 ## Architecture & Design
 
