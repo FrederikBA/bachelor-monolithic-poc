@@ -53,3 +53,17 @@ VALUES
     (6, 'Industrikemikalier'),
     (6, 'Husholdningskemikalier');
 
+
+-- Inserting categories for Warning Type ID 1
+INSERT INTO [dbo].[WarningCategories] ([WarningTypeId], [SortOrder], [Text])
+VALUES
+(1, 1, 'Fysiske Farer'),
+(1, 2, 'Sundhedsmæssige Farer'),
+(1, 3, 'Miljøfarer');
+
+-- Inserting categories for Warning Type ID 2
+INSERT INTO [dbo].[WarningCategories] ([WarningTypeId], [SortOrder], [Text])
+VALUES
+(2, 1, 'Fysiske Farer'),
+(2, 2, 'Sundhedsmæssige Farer'),
+(2, 3, 'Miljøfarer');
