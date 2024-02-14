@@ -6,4 +6,5 @@ public class Producer : BaseEntity
     public string? ContactPerson { get; set; }
     public string? PhoneNumber { get; set; }
     public ProducerAddress? Address { get; set; }
+    public List<Product>? Products { get; set; }
 }
