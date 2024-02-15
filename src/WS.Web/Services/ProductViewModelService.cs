@@ -26,8 +26,7 @@ public class ProductViewModelService : IProductViewModelService
             {
                 Id = product.ProductStatus?.Id ?? 0,
                 StatusName = product.ProductStatus?.StatusName,
-                Text = product.ProductStatus?.Text,
-                SortOrder = product.ProductStatus?.SortOrder ?? 0
+                Text = product.ProductStatus?.Text
             },
 
             //Product Producer (and producer address)
@@ -75,8 +74,7 @@ public class ProductViewModelService : IProductViewModelService
             {
                 Id = productEntity.ProductStatus?.Id ?? 0,
                 StatusName = productEntity.ProductStatus?.StatusName,
-                Text = productEntity.ProductStatus?.Text,
-                SortOrder = productEntity.ProductStatus?.SortOrder ?? 0
+                Text = productEntity.ProductStatus?.Text
             },
 
             //Product Producer (and producer address)
