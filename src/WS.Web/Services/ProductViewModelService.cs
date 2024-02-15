@@ -13,15 +13,39 @@ public class ProductViewModelService : IProductViewModelService
         _productService = productService;
     }
 
-
     public async Task<List<ProductViewModel>> GetProductViewModelsAsync()
     {
         var productEntities = await _productService.GetAllProductsAsync();
-        
+
         var productViewModels = productEntities.Select(product => new ProductViewModel
         {
             Id = product.Id,
             Name = product.Name,
+            //Product Status
+            Status = new ProductStatusViewModel
+            {
+                Id = product.ProductStatus?.Id ?? 0,
+                StatusName = product.ProductStatus?.StatusName,
+                Text = product.ProductStatus?.Text,
+                SortOrder = product.ProductStatus?.SortOrder ?? 0
+            },
+
+            //Product Producer (and producer address)
+            Producer = new ProducerViewModel
+            {
+                Id = product.Producer?.Id ?? 0,
+                CompanyName = product.Producer?.CompanyName,
+                PhoneNumber = product.Producer?.PhoneNumber,
+                Address = new ProducerAddressViewModel()
+                {
+                    Address = product.Producer?.Address?.Address,
+                    City = product.Producer?.Address?.City,
+                    PostalCode = product.Producer?.Address?.PostalCode,
+                    Country = product.Producer?.Address?.Country
+                }
+            },
+
+            //Product Category
             Category = new ProductCategoryViewModel
             {
                 Id = product.ProductCategory?.Id ?? 0,
@@ -34,7 +58,7 @@ public class ProductViewModelService : IProductViewModelService
                 }
             }
         }).ToList();
-        
+
         return productViewModels;
     }
 }
