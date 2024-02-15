@@ -59,7 +59,7 @@ public class ProductUnitTests
         var testProduct = ProductTestHelper.GetTestProducts()[0];
 
         _productReadRepositoryMock.Setup(x =>
-                x.GetByIdAsync(It.IsAny<int>(), new CancellationToken()))
+                x.FirstOrDefaultAsync(It.IsAny<Specification<Product>>(), new CancellationToken()))
             .ReturnsAsync(testProduct);
 
         //Act
