@@ -3,11 +3,12 @@ using WS.Core.Entities.ChemicalAggregate;
 
 namespace WS.Core.Specifications;
 
-public sealed class GetProductsFullSpec : Specification<Product>
+public sealed class GetProductByIdFullSpec : Specification<Product>
 {
-    public GetProductsFullSpec()
+    public GetProductByIdFullSpec(int id)
     {
         Query
+            .Where(product => product.Id == id)
             .Include(product => product.Producer)
             .Include(product => product.ProductStatus)
             .Include(product => product.ProductCategory)
