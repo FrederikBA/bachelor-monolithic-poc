@@ -23,12 +23,14 @@ public class ProductTestHelper
         // Create a list of products
         var productOne = new Product()
         {
+            Id = 1,
             Name = "Test Product 1",
             ProductCategory = productCategory
         };
         
         var productTwo = new Product()
         {
+            Id = 2,
             Name = "Test Product 2",
             ProductCategory = productCategory
         };
