@@ -1,4 +1,5 @@
 using WS.Core.Entities.ChemicalAggregate;
+using WS.Core.Exceptions;
 using WS.Core.Interfaces.DomainServices;
 using WS.Core.Interfaces.Repositories;
 using WS.Core.Specifications;
@@ -17,6 +18,12 @@ public class ProductService : IProductService
     public async Task<List<Product>> GetAllProductsAsync()
     {
         var products = await _productReadRepository.ListAsync(new GetProductsFullSpec());
+        
+        if (products == null || products.Count == 0)
+        {
+            throw new ProductsNotFoundException();
+        }
+        
         return products;
     }
 }

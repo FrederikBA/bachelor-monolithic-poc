@@ -1,6 +1,7 @@
 using Ardalis.Specification;
 using Moq;
 using WS.Core.Entities.ChemicalAggregate;
+using WS.Core.Exceptions;
 using WS.Core.Interfaces.DomainServices;
 using WS.Core.Interfaces.Repositories;
 using WS.Core.Services;
@@ -34,5 +35,20 @@ public class ProductUnitTests
         //Assert
         Assert.NotNull(result);
         Assert.Equal(2, result.Count); //Expecting 2 products
+    }
+    
+    [Fact]
+    public async Task GetProductsAsync_ThrowsProductsNotFoundException()
+    {
+        //Arrange
+        _productReadRepositoryMock.Setup(x =>
+                x.ListAsync(It.IsAny<ISpecification<Product>>(), new CancellationToken()))
+            .ReturnsAsync(new List<Product>());
+
+        //Act
+        var exception = await Assert.ThrowsAsync<ProductsNotFoundException>(() => _productService.GetAllProductsAsync());
+
+        //Assert
+        Assert.NotNull(exception);
     }
 }
