@@ -89,13 +89,13 @@ VALUES
 
 -- Some products
 -- Inserting five chemical products into the Products table
-INSERT INTO Products (Id, Name, ProductCategoryId, ProducerId, ProductStatusId)
+INSERT INTO Products (Name, ProductCategoryId, ProducerId, ProductStatusId)
 VALUES 
-    (1, 'Saltsyre', 17, 1, 1),
-    (2, 'Natriumhydroxid', 17, 2, 1),
-    (3, 'Eddikesyre', 17, 3, 1),
-    (4, 'Ammoniumnitrat', 12, 1, 1),
-    (5, 'Ethanol', 12, 3, 1);
+    ('Saltsyre', 17, 1, 1),
+    ('Natriumhydroxid', 17, 2, 1),
+    ('Eddikesyre', 17, 3, 1),
+    ('Ammoniumnitrat', 12, 1, 1),
+    ('Ethanol', 12, 3, 1);
 
 -- Warning Types
 INSERT INTO [dbo].[WarningTypes] ([Type], [Priority])

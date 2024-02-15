@@ -92,7 +92,10 @@ namespace WS.Infrastructure.Migrations
             modelBuilder.Entity("WS.Core.Entities.ChemicalAggregate.Product", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -109,6 +112,8 @@ namespace WS.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProducerId");
+
+                    b.HasIndex("ProductCategoryId");
 
                     b.HasIndex("ProductStatusId");
 
@@ -324,15 +329,15 @@ namespace WS.Infrastructure.Migrations
 
             modelBuilder.Entity("WS.Core.Entities.ChemicalAggregate.Product", b =>
                 {
-                    b.HasOne("WS.Core.Entities.ChemicalAggregate.ProductCategory", "ProductCategory")
-                        .WithOne("Product")
-                        .HasForeignKey("WS.Core.Entities.ChemicalAggregate.Product", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WS.Core.Entities.ChemicalAggregate.Producer", "Producer")
                         .WithMany("Products")
                         .HasForeignKey("ProducerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WS.Core.Entities.ChemicalAggregate.ProductCategory", "ProductCategory")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -405,7 +410,7 @@ namespace WS.Infrastructure.Migrations
 
             modelBuilder.Entity("WS.Core.Entities.ChemicalAggregate.ProductCategory", b =>
                 {
-                    b.Navigation("Product");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("WS.Core.Entities.ChemicalAggregate.ProductGroup", b =>
