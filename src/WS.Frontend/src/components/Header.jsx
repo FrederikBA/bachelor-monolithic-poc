@@ -17,12 +17,12 @@ const Header = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="nav-dropdown-menu">
-                    <Dropdown.Item eventKey="SEA HEALTH & WELFARE APPLICATIONS">
-                        <img src="/icons/seahealthicon.svg" alt="Sea Health Icon" className="icon" />
+                    <Dropdown.Item className="nav-dropdown-item" eventKey="SEA HEALTH & WELFARE APPLICATIONS">
+                        <img src="/icons/seahealthicon.svg" alt="Sea Health Icon" className="icon dropdown-item-icon" />
                         SEA HEALTH & WELFARE <span className="bold">APPLICATIONS</span>
                     </Dropdown.Item>
-                    <Dropdown.Item eventKey="Chemicals">Chemicals</Dropdown.Item>
-                    <Dropdown.Item eventKey="Warning Sentences">Warning Sentences</Dropdown.Item>
+                    <Dropdown.Item className="nav-dropdown-item nav-dropdown-item-bold" eventKey="CHEMICALS">CHEMICALS</Dropdown.Item>
+                    <Dropdown.Item className="nav-dropdown-item nav-dropdown-item-bold" eventKey="WARNING SENTENCES">WARNING SENTENCES</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
         </div>
