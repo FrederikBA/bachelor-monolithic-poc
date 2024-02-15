@@ -39,9 +39,9 @@ VALUES
 -- Insert data into Producers table
 INSERT INTO Producers (CompanyName, ContactPerson, PhoneNumber, AddressId)
 VALUES 
-('DanishChem A/S', 'Anders Nielsen', '45-12345678', 1),
-('Nordic Chemicals ApS', 'Lise Hansen', '45-87654321', 2),
-('Scandinavian Solutions Ltd.', 'Peter Jensen', '45-33333333', 3);
+('DanishChem A/S', 'Anders Nielsen', '12345678', 1),
+('Nordic Chemicals ApS', 'Lise Hansen', '87654321', 2),
+('Scandinavian Solutions Ltd.', 'Peter Jensen', '33333333', 3);
 
 
 --Product Categories
@@ -86,6 +86,16 @@ VALUES
 (6, 'Specialkemikalier'),
 (6, 'Industrikemikalier'),
 (6, 'Husholdningskemikalier');
+
+-- Some products
+-- Inserting five chemical products into the Products table
+INSERT INTO Products (Id, Name, ProductCategoryId, ProducerId, ProductStatusId)
+VALUES 
+    (1, 'Saltsyre', 17, 1, 1),
+    (2, 'Natriumhydroxid', 17, 2, 1),
+    (3, 'Eddikesyre', 17, 3, 1),
+    (4, 'Ammoniumnitrat', 12, 1, 1),
+    (5, 'Ethanol', 12, 3, 1);
 
 -- Warning Types
 INSERT INTO [dbo].[WarningTypes] ([Type], [Priority])
