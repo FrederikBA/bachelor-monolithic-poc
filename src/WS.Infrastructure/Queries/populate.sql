@@ -123,3 +123,16 @@ INSERT INTO [dbo].[WarningSignalWords] ([SignalWordText], [Priority])
 VALUES
 ('Fare', 1),
 ('Advarsel', 2)
+
+-- Inserting warning pictograms
+INSERT INTO [dbo].[WarningPictograms] ([Code], [Pictogram], [Extension], [Priority], [Text])
+VALUES
+('GHS05', 'acid_red', 'webp', 5),
+('GHS09', 'aquatic-pollut-red', 'webp', 9),
+('GHS04', 'bottle', 'gif', 4),
+('GHS07', 'exclam', 'webp', 7),
+('GHS01', 'explos', 'gif', 1),
+('GHS02', 'flamme', 'webp', 2),
+('GHS03', 'rondflam', 'webp', 3),
+('GHS08', 'silhouete', 'webp', 8),
+('GHS06', 'skull', 'webp', 6)
