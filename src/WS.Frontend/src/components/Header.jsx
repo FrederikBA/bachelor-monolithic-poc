@@ -26,12 +26,12 @@ const Header = () => {
                     </NavLink>
                     <NavLink to="/chemicals" className="nav-link-custom">
                         <Dropdown.Item as="li" className="nav-dropdown-item nav-dropdown-item-bold" eventKey="CHEMICALS">
-                            <NavLink to="/chemicals" className="nav-link-custom">CHEMICALS</NavLink>
+                            CHEMICALS
                         </Dropdown.Item>
                     </NavLink>
-                    <NavLink to="/chemicals" className="nav-link-custom">
+                    <NavLink to="/warningsentences" className="nav-link-custom">
                         <Dropdown.Item as="li" className="nav-dropdown-item nav-dropdown-item-bold" eventKey="WARNING SENTENCES">
-                            <NavLink to="/warningsentences" className="nav-link-custom">WARNING SENTENCES</NavLink>
+                            WARNING SENTENCES
                         </Dropdown.Item>
                     </NavLink>
                 </Dropdown.Menu>
