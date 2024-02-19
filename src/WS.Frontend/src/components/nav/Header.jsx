@@ -13,25 +13,25 @@ const Header = () => {
         <div className="header">
             <Dropdown onSelect={handleSelect}>
                 <Dropdown.Toggle className="nav-dropdown" variant="success" id="dropdown-basic">
-                    <img src="/icons/seahealthicon.svg" alt="Sea Health Icon" className="icon" />
+                    <img src="/../src/assets/seahealthicon.svg" alt="Sea Health Icon" className="icon" />
                     SEA HEALTH & WELFARE <span className="bold">APPLICATIONS</span>
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="nav-dropdown-menu">
                     <NavLink to="/" className="nav-link-custom">
                         <Dropdown.Item as="li" className="nav-dropdown-item" eventKey="SEA HEALTH & WELFARE APPLICATIONS">
-                            <img src="/icons/seahealthicon.svg" alt="Sea Health Icon" className="icon dropdown-item-icon" />
+                            <img src="/../src/assets/seahealthicon.svg" alt="Sea Health Icon" className="icon dropdown-item-icon" />
                             SEA HEALTH & WELFARE <span className="bold">APPLICATIONS</span>
                         </Dropdown.Item>
                     </NavLink>
                     <NavLink to="/chemicals" className="nav-link-custom">
                         <Dropdown.Item as="li" className="nav-dropdown-item nav-dropdown-item-bold" eventKey="CHEMICALS">
-                            <NavLink to="/chemicals" className="nav-link-custom">CHEMICALS</NavLink>
+                            CHEMICALS
                         </Dropdown.Item>
                     </NavLink>
-                    <NavLink to="/chemicals" className="nav-link-custom">
+                    <NavLink to="/warningsentences" className="nav-link-custom">
                         <Dropdown.Item as="li" className="nav-dropdown-item nav-dropdown-item-bold" eventKey="WARNING SENTENCES">
-                            <NavLink to="/warningsentences" className="nav-link-custom">WARNING SENTENCES</NavLink>
+                            WARNING SENTENCES
                         </Dropdown.Item>
                     </NavLink>
                 </Dropdown.Menu>
