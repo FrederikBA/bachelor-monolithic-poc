@@ -89,3 +89,60 @@ code {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
+
+.table-header {
+    text-align: left;
+    font-weight: 400;
+    font-size: 10pt;
+}
+
+.table-item {
+    text-align: left;
+}
+
+.table-checkbox {
+    text-align: right !important;
+}
+
+.table-product-name {
+    width: 350px;
+}
+
+.table-producer {
+    width: 350px;
+}
+
+.table-producer-border {
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.table-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #2a7c79;
+}
+
+.table-checkbox {
+    text-align: center;
+    vertical-align: middle !important;
+    width: 40px !important;
+    padding-top: 10px !important;
+    padding-right: 9px !important;
+}
+
+.table-checkbox-border {
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+tr:hover td {
+    background: #fafafa
+}
+
+.table-row {
+    text-align: center;
+}
+
+Table {
+    table-layout: fixed;
+}
