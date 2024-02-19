@@ -127,12 +127,19 @@ VALUES
 -- Inserting warning pictograms
 INSERT INTO [dbo].[WarningPictograms] ([Code], [Pictogram], [Extension], [Priority], [Text])
 VALUES
-('GHS05', 'acid_red', 'webp', 5),
-('GHS09', 'aquatic-pollut-red', 'webp', 9),
-('GHS04', 'bottle', 'gif', 4),
-('GHS07', 'exclam', 'webp', 7),
-('GHS01', 'explos', 'gif', 1),
-('GHS02', 'flamme', 'webp', 2),
-('GHS03', 'rondflam', 'webp', 3),
-('GHS08', 'silhouete', 'webp', 8),
-('GHS06', 'skull', 'webp', 6)
+('GHS05', 'acid_red', 'webp', 5, 'Corrosives'),
+('GHS09', 'aquatic-pollut-red', 'webp', 9, 'Environment'),
+('GHS04', 'bottle', 'gif', 4, 'Compressed Gases'),
+('GHS07', 'exclam', 'webp', 7, 'Irritant'),
+('GHS01', 'explos', 'gif', 1, 'Explosives'),
+('GHS02', 'flamme', 'webp', 2, 'Flammables'),
+('GHS03', 'rondflam', 'webp', 3, 'Oxidizers'),
+('GHS08', 'silhouete', 'webp', 8, 'Health Hazard'),
+('GHS06', 'skull', 'webp', 6, 'Acute Toxicity')
+
+-- Inserting warning sentences
+INSERT INTO [dbo].[WarningSentences] ([Code],[Text],[WarningCategoryId],[WarningPictogramId],[WarningSignalWordId])
+VALUES
+('H200', 'Instabilt eksplosivt stof.', 4, 5, 1),
+('H290', 'Kan ætse metaller.', 4, 1, 2),
+('H400', 'Meget giftig for vandlevende organismer.', 6, 2, 1)
