@@ -117,3 +117,9 @@ VALUES
 (2, 1, 'Fysiske Farer'),
 (2, 2, 'Sundhedsmæssige Farer'),
 (2, 3, 'Miljøfarer');
+
+-- Inserting warning signal words
+INSERT INTO [dbo].[WarningSignalWords] ([SignalWordText], [Priority])
+VALUES
+('Fare', 1),
+('Advarsel', 2)
