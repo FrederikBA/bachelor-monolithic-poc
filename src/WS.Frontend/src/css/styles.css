@@ -78,3 +78,7 @@ code {
 .bold {
     font-weight: bold;
 }
+
+.loading-spinner {
+    width: 10%;
+}
