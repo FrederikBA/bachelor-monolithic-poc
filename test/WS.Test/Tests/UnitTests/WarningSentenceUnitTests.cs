@@ -61,8 +61,8 @@ public class WarningSentenceUnitTests
         var testWarningSentence = testWarningSentences.First();
 
         _warningSentenceReadRepositoryMock.Setup(x =>
-                x.ListAsync(It.IsAny<ISpecification<WarningSentence>>(), new CancellationToken()))
-            .ReturnsAsync(testWarningSentences);
+                x.FirstOrDefaultAsync(It.IsAny<Specification<WarningSentence>>(), new CancellationToken()))
+            .ReturnsAsync(testWarningSentence);
 
         //Act
         var result = await _warningSentenceService.GetWarningSentenceByIdAsync(testWarningSentence.Id);
