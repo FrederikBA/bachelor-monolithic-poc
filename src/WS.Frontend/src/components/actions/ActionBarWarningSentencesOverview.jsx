@@ -5,7 +5,7 @@ import { ReactComponent as NewIcon } from "../../assets/newicon.svg";
 import ActionButton from "./ActionButton";
 import ActionBarDivision from "./ActionBarDivision"
 
-const ActionBarWarningSentences = ({ selectAllAction, action, hasCheckedSentences }) => {
+const ActionBarWarningSentencesOverview = ({ selectAllAction, action, hasCheckedSentences }) => {
     return (
         <div className="action-bar" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
             <ActionButton icon={<NewIcon />} text="Ny H-sætning" action={action} />
@@ -17,5 +17,5 @@ const ActionBarWarningSentences = ({ selectAllAction, action, hasCheckedSentence
     );
 }
 
-export default ActionBarWarningSentences;
+export default ActionBarWarningSentencesOverview;
 

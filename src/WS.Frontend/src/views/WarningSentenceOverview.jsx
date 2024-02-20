@@ -1,13 +1,16 @@
-import ActionBarWarningSentences from "../components/actions/ActionBarWarningSentences";
+import ActionBarWarningSentencesOverview from "../components/actions/ActionBarWarningSentencesOverview";
 import ShwSpinner from "../components/spinners/ShwSpinner";
 import warningSentenceService from "../services/warningSentenceService";
 import { Table } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const WarningSentenceOverview = () => {
     const [warningSentences, setWarningSentences] = useState([]);
     const [checkedWarningSentences, setCheckedWarningSentences] = useState({});
     const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -54,9 +57,13 @@ const WarningSentenceOverview = () => {
         }
     };
 
+    const navigateToWarningSentence = (id) => {
+        navigate(`/warningsentence/${id}`)
+    }
+
     return (
         <div className="center">
-            <ActionBarWarningSentences
+            <ActionBarWarningSentencesOverview
                 action={handleActionButtonClick}
                 selectAllAction={handleSelectAllClick}
                 hasCheckedSentences={Object.values(checkedWarningSentences).some(value => value)}
@@ -80,7 +87,11 @@ const WarningSentenceOverview = () => {
                         {warningSentences.map(sentence => (
                             <tr className="table-row" key={sentence.id}>
                                 <td className="table-item table-item-ws table-ws-category table-ws-category-border">{sentence.warningCategory.text}</td>
-                                <td className="table-item table-item-ws"><span className="td-ws-title">{sentence.code}</span></td>
+                                <td className="table-item table-item-ws">
+                                    <span onClick={() => navigateToWarningSentence(sentence.id)} className="td-ws-title">
+                                        {sentence.code}
+                                    </span>
+                                </td>
                                 <td className="table-item table-item-ws">{sentence.warningPictogram.code}</td>
                                 <td className="table-item table-item-ws"><img src={`pictograms/${sentence.warningPictogram.pictogram}.${sentence.warningPictogram.extension}`} alt="Piktogram" className="pictogram" /></td>
                                 <td className="table-item table-item-ws"></td>

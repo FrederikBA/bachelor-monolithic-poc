@@ -15,7 +15,7 @@ const warningSentenceService = () => {
 
     const getWarningSentenceById = async (warningSentenceId) => {
         try {
-            const response = await axios.get(`${URL}/product/${warningSentenceId}`);
+            const response = await axios.get(`${URL}/warningsentence/${warningSentenceId}`);
             return response.data;
         } catch (error) {
             throw new Error(`Error fetching warning sentence with id: ${warningSentenceId}`);
