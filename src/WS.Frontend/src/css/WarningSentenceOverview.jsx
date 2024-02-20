@@ -32,7 +32,7 @@ const WarningSentenceOverview = () => {
             <Table>
                 <thead>
                     <tr>
-                        <th className="table-header table-ws-category">Kategori</th>
+                        <th className="table-header">Kategori</th>
                         <th className="table-header th-ws-title">H-sætning</th>
                         <th className="table-header">Pitkogram nummer</th>
                         <th className="table-header">Piktogram</th>
@@ -46,8 +46,8 @@ const WarningSentenceOverview = () => {
                     <tbody>
                         {warningSentences.map(sentence => (
                             <tr className="table-row" key={sentence.id}>
-                                <td className="table-item table-item-ws table-ws-category table-ws-category-border">{sentence.warningCategory.text}</td>
-                                <td className="table-item table-item-ws"><span className="td-ws-title">{sentence.code}</span></td>
+                                <td className="table-item table-item-ws">{sentence.warningCategory.text}</td>
+                                <td className="table-item table-item-ws">{sentence.code}</td>
                                 <td className="table-item table-item-ws">{sentence.warningPictogram.code}</td>
                                 <td className="table-item table-item-ws"><img src={`pictograms/${sentence.warningPictogram.pictogram}.${sentence.warningPictogram.extension}`} alt="Piktogram" className="pictogram" /></td>
                                 <td className="table-item table-item-ws"></td>
