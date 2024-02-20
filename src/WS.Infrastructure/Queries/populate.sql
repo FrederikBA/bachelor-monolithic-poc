@@ -142,4 +142,21 @@ INSERT INTO [dbo].[WarningSentences] ([Code],[Text],[WarningCategoryId],[Warning
 VALUES
 ('H200', 'Instabilt eksplosivt stof.', 4, 5, 1),
 ('H290', 'Kan ætse metaller.', 4, 1, 2),
-('H400', 'Meget giftig for vandlevende organismer.', 6, 2, 1)
+('H400', 'Meget giftig for vandlevende organismer.', 6, 2, 1),
+('H410', 'Meget giftig for vandlevende organismer med langvarige virkninger.', 6, 2, 1),
+('H304', 'Kan være dødelig, hvis det indtages og kommer i luftvejene.', 2, 9, 1),
+('H315', 'Forårsager hudirritation.', 2, 7, 2),
+('H319', 'Forårsager alvorlig øjenirritation.', 2, 7, 2),
+('H335', 'Kan forårsage irritation af luftvejene.', 2, 7, 2),
+('H336', 'Kan forårsage døsighed eller svimmelhed.', 2, 7, 2),
+('H411', 'Giftig for vandlevende organismer med langvarige virkninger.', 6, 2, 1),
+('H412', 'Skadelig for vandlevende organismer med langvarige virkninger.', 6, 2, 1),
+('H302', 'Skadelig ved indtagelse.', 2, 7, 2),
+('H318', 'Forårsager alvorlig øjenskade.', 2, 7, 2),
+('H317', 'Kan forårsage allergisk hudreaktion.', 2, 7, 2),
+('H351', 'Mistænkt for at forårsage kræft.', 2, 8, 1),
+('H360', 'Kan skade forplantningsevnen eller det ufødte barn.', 2, 8, 1),
+('H361', 'Mistænkt for at skade forplantningsevnen.', 2, 8, 1),
+('H362', 'Mistænkt for at skade forplantningsevnen.', 2, 8, 1),
+('H370', 'Skadelig for organer.', 2, 8, 1),
+('H371', 'Kan forårsage organskader.', 2, 8, 1)
