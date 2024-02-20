@@ -94,6 +94,17 @@ code {
     margin: 30px;
 }
 
+.action-button.disabled svg {
+    filter: grayscale(100%);
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.action-button.disabled:hover {
+    cursor: default;
+}
+
+
 .action-button:hover {
     cursor: pointer;
 }

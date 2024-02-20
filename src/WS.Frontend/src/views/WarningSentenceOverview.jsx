@@ -1,11 +1,12 @@
-import ActionBarWarningSentences from "../components/actions/ActionBarWarningSentences"
-import ShwSpinner from "../components/spinners/ShwSpinner"
-import warningSentenceService from "../services/warningSentenceService"
+import ActionBarWarningSentences from "../components/actions/ActionBarWarningSentences";
+import ShwSpinner from "../components/spinners/ShwSpinner";
+import warningSentenceService from "../services/warningSentenceService";
 import { Table } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
 const WarningSentenceOverview = () => {
     const [warningSentences, setWarningSentences] = useState([]);
+    const [checkedWarningSentences, setCheckedWarningSentences] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -13,7 +14,6 @@ const WarningSentenceOverview = () => {
             try {
                 const response = await warningSentenceService.getAllWarningSentences();
                 setWarningSentences(response);
-                console.log(response);
             } catch (error) {
                 console.log(error);
             } finally {
@@ -26,9 +26,29 @@ const WarningSentenceOverview = () => {
         fetchData();
     }, []);
 
+    const handleCheckboxChange = (sentenceId, isChecked) => {
+        setCheckedWarningSentences(prevState => ({
+            ...prevState,
+            [sentenceId]: isChecked,
+        }));
+    };
+
+    const handleActionButtonClick = () => {
+        const checkedSentenceIds = Object.entries(checkedWarningSentences)
+            .filter(([id, isChecked]) => isChecked)
+            .map(([id, isChecked]) => id);
+
+        if (checkedSentenceIds.length > 0) {
+            console.log("Selected warning sentence IDs:", checkedSentenceIds);
+        }
+    };
+
     return (
         <div className="center">
-            <ActionBarWarningSentences />
+            <ActionBarWarningSentences
+                action={handleActionButtonClick}
+                hasCheckedSentences={Object.values(checkedWarningSentences).some(value => value)}
+            />
             <Table>
                 <thead>
                     <tr>
@@ -53,7 +73,12 @@ const WarningSentenceOverview = () => {
                                 <td className="table-item table-item-ws"></td>
                                 <td className="table-item table-item-ws">{sentence.warningSignalWord.signalWordText}</td>
                                 <td className="table-item table-item-ws table-ws-text table-ws-text-border">{sentence.text}</td>
-                                <td className="table-item table-item-ws table-checkbox table-checkbox-border"><input type="checkbox" /></td>
+                                <td className="table-item table-item-ws table-checkbox table-checkbox-border">
+                                    <input
+                                        type="checkbox"
+                                        onChange={(e) => handleCheckboxChange(sentence.id, e.target.checked)}
+                                    />
+                                </td>
                             </tr>
                         ))}
                     </tbody>
