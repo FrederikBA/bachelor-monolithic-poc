@@ -1,7 +1,7 @@
-import { Table } from 'react-bootstrap';
 import ActionBar from "../components/actions/ActionBar";
 import ShwSpinner from "../components/spinners/ShwSpinner";
 import productService from "../services/productService";
+import { Table } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
 const ProductOverview = () => {
@@ -11,7 +11,7 @@ const ProductOverview = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await productService.getAllproducts();
+                const response = await productService.getAllProducts();
                 setProducts(response);
             } catch (error) {
                 console.log(error);

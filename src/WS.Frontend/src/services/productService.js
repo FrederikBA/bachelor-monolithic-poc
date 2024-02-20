@@ -4,7 +4,7 @@ import apiUtils from "../utils/apiUtils";
 const productService = () => {
     const URL = apiUtils.getUrl();
 
-    const getAllproducts = async () => {
+    const getAllProducts = async () => {
         try {
             const response = await axios.get(URL + '/product/all');
             return response.data;
@@ -23,7 +23,7 @@ const productService = () => {
     };
 
     return {
-        getAllproducts,
+        getAllProducts,
         getProductById
     };
 };
