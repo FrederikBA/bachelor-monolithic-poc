@@ -27,7 +27,7 @@ public class WarningSentenceService : IWarningSentenceService
         return warningSentences;
     }
 
-    public Task<WarningSentence> GetWarningSentenceById(int id)
+    public Task<WarningSentence> GetWarningSentenceByIdAsync(int id)
     {
         throw new NotImplementedException();
     }
