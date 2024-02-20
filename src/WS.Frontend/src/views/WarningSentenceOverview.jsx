@@ -33,6 +33,17 @@ const WarningSentenceOverview = () => {
         }));
     };
 
+    const handleSelectAllClick = () => {
+        const allChecked = Object.values(checkedWarningSentences).every(value => value);
+
+        const updatedCheckedSentences = {};
+        warningSentences.forEach(sentence => {
+            updatedCheckedSentences[sentence.id] = !allChecked;
+        });
+
+        setCheckedWarningSentences(updatedCheckedSentences);
+    };
+
     const handleActionButtonClick = () => {
         const checkedSentenceIds = Object.entries(checkedWarningSentences)
             .filter(([id, isChecked]) => isChecked)
@@ -47,8 +58,10 @@ const WarningSentenceOverview = () => {
         <div className="center">
             <ActionBarWarningSentences
                 action={handleActionButtonClick}
+                selectAllAction={handleSelectAllClick}
                 hasCheckedSentences={Object.values(checkedWarningSentences).some(value => value)}
             />
+
             <Table>
                 <thead>
                     <tr>
@@ -77,6 +90,7 @@ const WarningSentenceOverview = () => {
                                     <input
                                         type="checkbox"
                                         onChange={(e) => handleCheckboxChange(sentence.id, e.target.checked)}
+                                        checked={checkedWarningSentences[sentence.id] || false}
                                     />
                                 </td>
                             </tr>

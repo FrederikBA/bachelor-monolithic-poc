@@ -5,14 +5,14 @@ import { ReactComponent as NewIcon } from "../../assets/newicon.svg";
 import ActionButton from "./ActionButton";
 import ActionBarDivision from "./ActionBarDivision"
 
-const ActionBarWarningSentences = ({ action, hasCheckedSentences }) => {
+const ActionBarWarningSentences = ({ selectAllAction, action, hasCheckedSentences }) => {
     return (
         <div className="action-bar" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
             <ActionButton icon={<NewIcon />} text="Ny H-sætning" action={action} />
             <ActionButton icon={<CloneIcon />} text="Kopier" action={action} disabled={!hasCheckedSentences} />
             <ActionButton icon={<DeleteIcon />} text="Slet" action={action} disabled={!hasCheckedSentences} />
             <ActionBarDivision />
-            <ActionButton icon={<SelectAllIcon />} text="Vælg alle" action={action} />
+            <ActionButton icon={<SelectAllIcon />} text="Vælg alle" action={selectAllAction} />
         </div>
     );
 }
