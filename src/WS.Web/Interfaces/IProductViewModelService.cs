@@ -1,4 +1,5 @@
 using WS.Web.ViewModels;
+using WS.Web.ViewModels.Product;
 
 namespace WS.Web.Interfaces;
 

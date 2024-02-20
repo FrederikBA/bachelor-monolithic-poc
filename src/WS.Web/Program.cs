@@ -41,8 +41,10 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
 //Build services
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IWarningSentenceService, WarningSentenceService>();
 
 builder.Services.AddScoped<IProductViewModelService, ProductViewModelService>();
+builder.Services.AddScoped<IWarningSentenceViewModelService, WarningSentenceViewModelService>();
 
 var app = builder.Build();
 

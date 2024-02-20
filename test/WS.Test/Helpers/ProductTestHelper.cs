@@ -2,7 +2,7 @@ using WS.Core.Entities.ChemicalAggregate;
 
 namespace WS.Test.Helpers;
 
-public class ProductTestHelper
+public static class ProductTestHelper
 {
     public static List<Product> GetTestProducts()
     {

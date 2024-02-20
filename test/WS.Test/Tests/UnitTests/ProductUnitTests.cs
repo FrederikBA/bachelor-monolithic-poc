@@ -1,5 +1,5 @@
-using Ardalis.Specification;
 using Moq;
+using Ardalis.Specification;
 using WS.Core.Entities.ChemicalAggregate;
 using WS.Core.Exceptions;
 using WS.Core.Interfaces.DomainServices;

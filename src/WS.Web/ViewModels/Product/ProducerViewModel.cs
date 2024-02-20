@@ -1,4 +1,4 @@
-namespace WS.Web.ViewModels;
+namespace WS.Web.ViewModels.Product;
 
 public class ProducerViewModel
 {

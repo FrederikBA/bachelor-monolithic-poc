@@ -1,6 +1,6 @@
 using WS.Core.Interfaces.DomainServices;
 using WS.Web.Interfaces;
-using WS.Web.ViewModels;
+using WS.Web.ViewModels.Product;
 
 namespace WS.Web.Services;
 
