@@ -5,4 +5,5 @@ namespace WS.Core.Interfaces.DomainServices;
 public interface IWarningSentenceService
 {
     Task<List<WarningSentence>> GetAllWarningSentencesAsync();
+    Task<WarningSentence> GetWarningSentenceById(int id);
 }
