@@ -49,7 +49,7 @@ const WarningSentenceOverview = () => {
                                 <td className="table-item table-item-ws">{sentence.warningCategory.text}</td>
                                 <td className="table-item table-item-ws">{sentence.code}</td>
                                 <td className="table-item table-item-ws">{sentence.warningPictogram.code}</td>
-                                <td className="table-item table-item-ws"><img src={`src/assets/pictograms/${sentence.warningPictogram.pictogram}.${sentence.warningPictogram.extension}`} alt="Piktogram" className="pictogram" /></td>
+                                <td className="table-item table-item-ws"><img src={`pictograms/${sentence.warningPictogram.pictogram}.${sentence.warningPictogram.extension}`} alt="Piktogram" className="pictogram" /></td>
                                 <td className="table-item table-item-ws"></td>
                                 <td className="table-item table-item-ws">{sentence.warningSignalWord.signalWordText}</td>
                                 <td className="table-item table-item-ws table-ws-text table-ws-text-border">{sentence.text}</td>
