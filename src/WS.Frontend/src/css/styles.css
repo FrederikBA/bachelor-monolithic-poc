@@ -90,6 +90,25 @@ code {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
+.action-button {
+    margin: 30px;
+}
+
+.action-button:hover {
+    cursor: pointer;
+}
+
+.action-button-text {
+    font-size: 10pt;
+}
+
+.action-division-bar {
+    border-right: 1px solid #ccc;
+    height: 100%;
+    margin: 0 10px;
+}
+
+
 .table-header {
     text-align: left;
     font-weight: 400;

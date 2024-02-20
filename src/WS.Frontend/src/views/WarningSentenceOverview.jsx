@@ -1,4 +1,4 @@
-import ActionBar from "../components/actions/ActionBar"
+import ActionBarWarningSentences from "../components/actions/ActionBarWarningSentences"
 import ShwSpinner from "../components/spinners/ShwSpinner"
 import warningSentenceService from "../services/warningSentenceService"
 import { Table } from 'react-bootstrap';
@@ -28,7 +28,7 @@ const WarningSentenceOverview = () => {
 
     return (
         <div className="center">
-            <ActionBar />
+            <ActionBarWarningSentences />
             <Table>
                 <thead>
                     <tr>

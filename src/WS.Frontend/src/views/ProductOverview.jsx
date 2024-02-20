@@ -1,4 +1,4 @@
-import ActionBar from "../components/actions/ActionBar";
+import ActionBarProducts from "../components/actions/ActionBarProducts";
 import ShwSpinner from "../components/spinners/ShwSpinner";
 import productService from "../services/productService";
 import { Table } from 'react-bootstrap';
@@ -27,7 +27,7 @@ const ProductOverview = () => {
 
     return (
         <div className="center">
-            <ActionBar />
+            <ActionBarProducts />
             <Table>
                 <thead>
                     <tr>

@@ -1,8 +1,8 @@
-const ActionBar = () => {
+const ActionBarProducts = () => {
     return (
         <div className="action-bar">
         </div>
     )
 }
 
-export default ActionBar
+export default ActionBarProducts
