@@ -83,7 +83,7 @@ public class ChemicalContext : DbContext
         
         //WarningSentence to WarningSignalWord (one to many)
         modelBuilder.Entity<WarningSentence>()
-            .HasOne(warningSentence => warningSentence.WarningSignalWordd)
+            .HasOne(warningSentence => warningSentence.WarningSignalWord)
             .WithMany(warningSignalWord => warningSignalWord.WarningSentences)
             .HasForeignKey(w => w.WarningSignalWordId);
         
