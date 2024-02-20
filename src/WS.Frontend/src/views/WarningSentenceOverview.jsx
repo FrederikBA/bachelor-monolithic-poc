@@ -74,7 +74,7 @@ const WarningSentenceOverview = () => {
                     <tr>
                         <th className="table-header table-ws-category">Kategori</th>
                         <th className="table-header th-ws-title">H-sætning</th>
-                        <th className="table-header">Pitkogram nummer</th>
+                        <th className="table-header">Piktogram nummer</th>
                         <th className="table-header">Piktogram</th>
                         <th className="table-header">Fareklasse (WIP)</th>
                         <th className="table-header">Signalord</th>
