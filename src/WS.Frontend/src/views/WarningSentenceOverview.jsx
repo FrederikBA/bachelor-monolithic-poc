@@ -130,8 +130,8 @@ const WarningSentenceOverview = () => {
                                     <tr>
                                         <th></th>
                                         <th className="table-header th-ws-title">H-sætning</th>
-                                        <th className="table-header">Piktogram nr.</th>
                                         <th className="table-header">Piktogram</th>
+                                        <th className="table-header"></th>
                                         <th className="table-header table-ws-category">Kategori</th>
                                         <th className="table-header">Signalord</th>
                                         <th className="table-header table-ws-text">Ordlyd af H-sætning</th>
