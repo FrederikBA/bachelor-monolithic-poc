@@ -114,9 +114,9 @@ VALUES
 -- Inserting categories for Warning Type ID 2
 INSERT INTO [dbo].[WarningCategories] ([WarningTypeId], [SortOrder], [Text])
 VALUES
-(2, 1, 'Fysiske Farer'),
-(2, 2, 'Sundhedsmæssige Farer'),
-(2, 3, 'Miljøfarer');
+(2, 1, 'Fysiske'),
+(2, 2, 'Sundhedsmæssige'),
+(2, 3, 'Miljø');
 
 -- Inserting warning signal words
 INSERT INTO [dbo].[WarningSignalWords] ([SignalWordText], [Priority])

@@ -57,10 +57,6 @@ const WarningSentenceView = () => {
                             <Col className="headline" xs={2}>
                                 <span className="area-title">{warningSentence.code}</span>
                             </Col>
-                            <Col xs={2} className="pictogram-col">
-                                <img src={`/pictograms/${warningSentence.warningPictogram.pictogram}.${warningSentence.warningPictogram.extension}`} alt="Piktogram" className="view-pictogram" />
-                            </Col>
-
                             <Col xs={6}>
 
                             </Col>
