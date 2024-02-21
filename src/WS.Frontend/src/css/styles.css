@@ -83,6 +83,13 @@ code {
     width: 10%;
 }
 
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
 .action-bar {
     background-color: #f3f3f4;
     height: 70px;
@@ -288,6 +295,7 @@ Table {
     overflow-y: auto;
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     color: white;
+    min-height: 500px;
 }
 
 .sidebar input[type="checkbox"] {

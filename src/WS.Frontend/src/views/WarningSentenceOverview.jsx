@@ -81,8 +81,9 @@ const WarningSentenceOverview = () => {
                         <Table>
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th className="table-header th-ws-title">H-sætning</th>
-                                    <th className="table-header">Piktogram nummer</th>
+                                    <th className="table-header">Piktogram nr.</th>
                                     <th className="table-header">Piktogram</th>
                                     <th className="table-header table-ws-category">Kategori</th>
                                     <th className="table-header">Signalord</th>
@@ -94,6 +95,7 @@ const WarningSentenceOverview = () => {
                                 <tbody>
                                     {warningSentences.map(sentence => (
                                         <tr className="table-row" key={sentence.id}>
+                                            <td></td>
                                             <td className="table-item table-item-ws">
                                                 <span onClick={() => navigateToWarningSentence(sentence.id)} className="td-ws-title">
                                                     {sentence.code}
@@ -116,7 +118,10 @@ const WarningSentenceOverview = () => {
                                 </tbody>
                             )}
                         </Table>
-                        {loading && <ShwSpinner />}
+                        <div className="spinner-container">
+                            {loading && <ShwSpinner />}
+                        </div>
+
                     </div>
                 </Col>
             </Row>
