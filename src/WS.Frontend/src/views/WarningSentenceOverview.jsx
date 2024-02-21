@@ -136,6 +136,7 @@ const WarningSentenceOverview = () => {
                                         <th className="table-header">Signalord</th>
                                         <th className="table-header table-ws-text">Ordlyd af H-sætning</th>
                                         <th className="table-header table-checkbox"></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 {!loading && (
@@ -161,6 +162,7 @@ const WarningSentenceOverview = () => {
                                                             checked={checkedWarningSentences[sentence.id] || false}
                                                         />
                                                     </td>
+                                                    <td></td>
                                                 </tr>
                                             )
                                         ))}
