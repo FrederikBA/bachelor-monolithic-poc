@@ -181,6 +181,7 @@ tr:hover td {
 
 Table {
     table-layout: fixed;
+    font-size: 10pt;
 }
 
 .table-ws-text {
@@ -278,4 +279,64 @@ Table {
 
 .area-title-content {
     flex-shrink: 1;
+}
+
+.sidebar {
+    background-color: #182021;
+    height: 100%;
+    position: sticky;
+    overflow-y: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.sidebar input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding-right: 10px;
+    accent-color: #2a7c79;
+    background-color: black;
+    margin-right: 5px;
+}
+
+.sidebar span {
+    display: block;
+    padding: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.sidebar-collapse {
+    border-bottom: 1px solid rgb(255, 255, 255);
+    font-weight: 400;
+}
+
+.sidebar-icon {
+    margin-left: auto;
+    float: right;
+    padding-top: 5px !important;
+}
+
+.sidebar-collapse-content {
+    display: block;
+    padding-left: 16px;
+}
+
+
+.sidebar-header {
+    padding-bottom: 27px !important;
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+
+.row>* {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.overview-row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
