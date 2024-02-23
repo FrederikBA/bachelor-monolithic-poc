@@ -20,7 +20,7 @@ const SidebarFilter = ({ onFilterChange, filters }) => {
 
     return (
         <div className="sidebar">
-            <span className="sidebar-header">Filter</span>
+            <span className="sidebar-header">Filtrer</span>
             <div className="sidebar-collapse">
                 <span onClick={() => handleFilterToggle('kategori')}>
                     Kategori{' '}

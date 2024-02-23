@@ -99,6 +99,7 @@ code {
 
 .action-button {
     margin: 30px;
+    text-align: center;
 }
 
 .action-button.disabled svg {
