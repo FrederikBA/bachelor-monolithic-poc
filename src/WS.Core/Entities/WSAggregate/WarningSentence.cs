@@ -13,5 +13,5 @@ public class WarningSentence : BaseEntity, IAggregateRoot
     public WarningCategory? WarningCategory { get; set; }
     public WarningSignalWord? WarningSignalWord { get; set; }
     public WarningPictogram? WarningPictogram { get; set; }
-    public List<Product>? Products { get; set; }
+    public List<Product>? Products { get; set; } = new();
 }
