@@ -13,10 +13,11 @@ public class WarningSentenceUnitTests
 {
     private readonly IWarningSentenceService _warningSentenceService;
     private readonly Mock<IReadRepository<WarningSentence>> _warningSentenceReadRepositoryMock = new();
+    private readonly Mock<IRepository<WarningSentence>> _warningSentenceRepositoryMock = new();
     
     public WarningSentenceUnitTests()
     {
-        _warningSentenceService = new WarningSentenceService(_warningSentenceReadRepositoryMock.Object);
+        _warningSentenceService = new WarningSentenceService(_warningSentenceReadRepositoryMock.Object, _warningSentenceRepositoryMock.Object);
     }
     
     [Fact]
@@ -90,4 +91,22 @@ public class WarningSentenceUnitTests
         Assert.NotNull(exception);
     }
     
+    [Fact]
+    public async Task AddWarningSentenceAsync_ReturnsWarningSentence()
+    {
+        //Arrange
+        var testWarningSentenceDto = WarningSentenceTestHelper.GetTestWarningSentenceDto();
+        var testWarningSentence = WarningSentenceTestHelper.GetTestWarningSentences().First();
+
+        _warningSentenceRepositoryMock.Setup(x =>
+                x.AddAsync(It.IsAny<WarningSentence>(), new CancellationToken()))
+            .ReturnsAsync(testWarningSentence);
+
+        //Act
+        var result = await _warningSentenceService.AddWarningSentenceAsync(testWarningSentenceDto);
+
+        //Assert
+        Assert.NotNull(result);
+        Assert.Equal(testWarningSentence.Id, result.Id);
+    }
 }
