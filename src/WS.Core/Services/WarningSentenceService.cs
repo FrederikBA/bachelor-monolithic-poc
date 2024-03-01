@@ -90,35 +90,45 @@ public class WarningSentenceService : IWarningSentenceService
         {
             throw new WarningSentenceNotFoundException(id);
         }
-        
+
         //Rename the warning sentence
         warningSentence.Code = renameTo;
-        
+
         await _warningSentenceRepository.UpdateAsync(warningSentence);
-        
+
         return warningSentence;
     }
 
-    public async Task<bool> DeleteWarningSentenceAsync(int id)
+    public async Task<bool> DeleteWarningSentenceAsync(List<int> ids)
     {
-        //Get the warning sentence that needs to be deleted
-        var warningSentence = await _warningSentenceReadRepository.FirstOrDefaultAsync(new WarningSentenceWithProductsSpec(id));
-        
-        //Check if null
-        if (warningSentence == null)
+        //Get the warning sentences that needs to be deleted
+
+        var warningSentences = new List<WarningSentence>();
+
+        foreach (var warningSentenceId in ids)
         {
-            throw new WarningSentenceNotFoundException(id);
+            var warningSentence =
+                await _warningSentenceReadRepository.FirstOrDefaultAsync(
+                    new WarningSentenceWithProductsSpec(warningSentenceId));
+
+            //Check if null
+            if (warningSentence == null)
+            {
+                throw new WarningSentenceNotFoundException(warningSentenceId);
+            }
+            
+            //Check if the warning sentence is in use
+            if (warningSentence.Products!.Count > 0)
+            {
+                throw new WarningSentenceInUseException(warningSentence.Products.Select(p => p.Id).ToList());
+            }
+
+            warningSentences.Add(warningSentence);
         }
-        
-        //Check if the warning sentence is in use
-        if (warningSentence.Products!.Count > 0)
-        {
-            throw new WarningSentenceInUseException(warningSentence.Products.Select(p => p.Id).ToList());
-        }
-        
+
         //Delete the warning sentence
-        await _warningSentenceRepository.DeleteAsync(warningSentence);
-        
+        await _warningSentenceRepository.DeleteRangeAsync(warningSentences);
+
         return true;
     }
 }

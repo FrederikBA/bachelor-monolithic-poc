@@ -188,6 +188,9 @@ public class WarningSentenceUnitTests
     {
         //Arrange
         var testWarningSentence = WarningSentenceTestHelper.GetTestWarningSentences().First();
+        
+        var idsToDelete = new List<int> {testWarningSentence.Id};
+
 
         _warningSentenceReadRepositoryMock.Setup(x =>
                 x.FirstOrDefaultAsync(It.IsAny<Specification<WarningSentence>>(), new CancellationToken()))
@@ -197,7 +200,7 @@ public class WarningSentenceUnitTests
             x.DeleteAsync(testWarningSentence, new CancellationToken()));
 
         //Act
-        var result = await _warningSentenceService.DeleteWarningSentenceAsync(testWarningSentence.Id);
+        var result = await _warningSentenceService.DeleteWarningSentenceAsync(idsToDelete);
 
         //Assert
         Assert.True(result);
@@ -212,7 +215,7 @@ public class WarningSentenceUnitTests
             .ReturnsAsync((WarningSentence)null!);
 
         //Act
-        var exception = await Assert.ThrowsAsync<WarningSentenceNotFoundException>(() => _warningSentenceService.DeleteWarningSentenceAsync(0));
+        var exception = await Assert.ThrowsAsync<WarningSentenceNotFoundException>(() => _warningSentenceService.DeleteWarningSentenceAsync(new List<int>{0}));
 
         //Assert
         Assert.NotNull(exception);
@@ -225,13 +228,15 @@ public class WarningSentenceUnitTests
         var testWarningSentence = WarningSentenceTestHelper.GetTestWarningSentences().First();
         var testProduct = ProductTestHelper.GetTestProducts().First();
         testWarningSentence.Products!.Add(testProduct);
+        
+        var idsToDelete = new List<int> {testWarningSentence.Id};
 
         _warningSentenceReadRepositoryMock.Setup(x =>
                 x.FirstOrDefaultAsync(It.IsAny<Specification<WarningSentence>>(), new CancellationToken()))
             .ReturnsAsync(testWarningSentence);
         
         //Act
-        var exception = await Assert.ThrowsAsync<WarningSentenceInUseException>(() => _warningSentenceService.DeleteWarningSentenceAsync(testWarningSentence.Id));
+        var exception = await Assert.ThrowsAsync<WarningSentenceInUseException>(() => _warningSentenceService.DeleteWarningSentenceAsync(idsToDelete));
 
         //Assert
         Assert.NotNull(exception);
