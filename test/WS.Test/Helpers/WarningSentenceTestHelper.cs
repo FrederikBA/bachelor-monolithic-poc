@@ -1,4 +1,5 @@
 using WS.Core.Entities.WSAggregate;
+using WS.Core.Models.Dtos;
 
 namespace WS.Test.Helpers;
 
@@ -61,6 +62,19 @@ public static class WarningSentenceTestHelper
             Pictogram = "TestPictogram",
             Extension = "webp",
             Text = "Corrosives",
+        };
+    }
+
+    public static WarningSentenceDto GetTestWarningSentenceDto()
+    {
+        return new WarningSentenceDto
+        {
+            Code = "TestCode",
+            Text = "Test Warning Sentence",
+            WarningTypeId = 1,
+            WarningCategoryId = 1,
+            WarningSignalWordId = 1,
+            WarningPictogramId = 1
         };
     }
 }
