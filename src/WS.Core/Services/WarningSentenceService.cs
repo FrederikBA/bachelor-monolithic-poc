@@ -98,4 +98,9 @@ public class WarningSentenceService : IWarningSentenceService
         
         return warningSentence;
     }
+
+    public Task<bool> DeleteWarningSentenceAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
 }
