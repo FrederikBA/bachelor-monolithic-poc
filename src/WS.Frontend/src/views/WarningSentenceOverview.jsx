@@ -66,6 +66,10 @@ const WarningSentenceOverview = () => {
         }));
     };
 
+    const selectedSentenceCount = Object.values(checkedWarningSentences).filter(value => value).length;
+
+    const isEditEnabled = selectedSentenceCount === 1;
+
     const handleSelectAllClick = () => {
         const allChecked = Object.values(checkedWarningSentences).every(value => value);
 
@@ -117,6 +121,7 @@ const WarningSentenceOverview = () => {
                 action={handleActionButtonClick}
                 selectAllAction={handleSelectAllClick}
                 hasCheckedSentences={Object.values(checkedWarningSentences).some(value => value)}
+                isEditEnabled={isEditEnabled}
             />
             <Container fluid>
                 <Row className="overview-row">
