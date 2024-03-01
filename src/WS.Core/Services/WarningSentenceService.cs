@@ -78,4 +78,9 @@ public class WarningSentenceService : IWarningSentenceService
         
         return await _warningSentenceRepository.AddAsync(clonedWarningSentence);
     }
+
+    public Task<WarningSentence> RenameWarningSentenceAsync(int id, string renameTo)
+    {
+        throw new NotImplementedException();
+    }
 }
