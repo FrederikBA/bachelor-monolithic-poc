@@ -361,6 +361,7 @@ Table {
 }
 
 .modal-middle-section {
+    position: relative;
     padding: 20px;
     padding-top: 30px;
     padding-bottom: 30px;
@@ -399,4 +400,27 @@ Table {
     cursor: pointer;
     font-size: 18pt;
     opacity: 55%;
+}
+
+.form-control {
+    width: 100% !important;
+    padding: 10px !important;
+    font-size: 16px !important;
+}
+
+.input-label {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.1s ease-out;
+    font-size: 12pt;
+    opacity: 0.8;
+}
+
+.input-label-up {
+    font-size: 10pt;
+    bottom: 0;
+    opacity: 0.5;
 }

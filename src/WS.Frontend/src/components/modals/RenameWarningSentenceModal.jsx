@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -18,6 +19,12 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const RenameWarningSentenceModal = ({ isOpen, closeModal }) => {
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+
     return (
         <Modal
             isOpen={isOpen}
@@ -32,7 +39,17 @@ const RenameWarningSentenceModal = ({ isOpen, closeModal }) => {
                 </div>
             </div>
             <div className="modal-middle-section">
-                <input className="form-control form-select-md" type="text" placeholder="" aria-label=".form-control-lg example" />
+                <input
+                    className="form-control form-select-md"
+                    type="text"
+                    placeholder=" "
+                    aria-label=".form-control-lg example"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                />
+                <label className={inputValue ? "input-label input-label-up" : "input-label"}>
+                    Omdøb kode
+                </label>
             </div>
             <div className="modal-bottom-section">
                 <button className="right btn btn-outline-primary">Gem</button>
