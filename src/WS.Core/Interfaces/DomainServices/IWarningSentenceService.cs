@@ -8,7 +8,7 @@ public interface IWarningSentenceService
     Task<List<WarningSentence>> GetAllWarningSentencesAsync();
     Task<WarningSentence> GetWarningSentenceByIdAsync(int id);
     Task<WarningSentence> AddWarningSentenceAsync(WarningSentenceDto warningSentenceDto);
-    Task<WarningSentence> CloneWarningSentenceAsync(int id);
+    Task<IEnumerable<WarningSentence>> CloneWarningSentenceAsync(List<int> ids);
     Task<WarningSentence> RenameWarningSentenceAsync(int id, string renameTo);
     Task<bool> DeleteWarningSentenceAsync(List<int> ids);
 }
