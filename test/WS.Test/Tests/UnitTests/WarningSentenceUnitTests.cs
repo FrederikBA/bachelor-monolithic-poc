@@ -180,4 +180,56 @@ public class WarningSentenceUnitTests
         //Assert
         Assert.NotNull(exception);
     }
+    
+    [Fact]
+    public async Task DeleteWarningSentenceAsync_ReturnsTrue()
+    {
+        //Arrange
+        var testWarningSentence = WarningSentenceTestHelper.GetTestWarningSentences().First();
+
+        _warningSentenceReadRepositoryMock.Setup(x =>
+                x.GetByIdAsync(testWarningSentence.Id, new CancellationToken()))
+            .ReturnsAsync(testWarningSentence);
+
+        _warningSentenceRepositoryMock.Setup(x =>
+            x.DeleteAsync(testWarningSentence, new CancellationToken()));
+
+        //Act
+        var result = await _warningSentenceService.DeleteWarningSentenceAsync(testWarningSentence.Id);
+
+        //Assert
+        Assert.True(result);
+    }
+    
+    [Fact]
+    public async Task DeleteWarningSentenceAsync_ThrowsWarningSentenceNotFoundException()
+    {
+        //Arrange
+        _warningSentenceReadRepositoryMock.Setup(x =>
+                x.FirstOrDefaultAsync(It.IsAny<Specification<WarningSentence>>(), new CancellationToken()))
+            .ReturnsAsync((WarningSentence)null!);
+
+        //Act
+        var exception = await Assert.ThrowsAsync<WarningSentenceNotFoundException>(() => _warningSentenceService.DeleteWarningSentenceAsync(0));
+
+        //Assert
+        Assert.NotNull(exception);
+    }
+    
+    [Fact]
+    public async Task DeleteWarningSentenceAsync_ThrowsWarningSentenceInUseException()
+    {
+        //Arrange
+        var testWarningSentence = WarningSentenceTestHelper.GetTestWarningSentences().First();
+
+        _warningSentenceReadRepositoryMock.Setup(x =>
+                x.GetByIdAsync(testWarningSentence.Id, new CancellationToken()))
+            .ReturnsAsync(testWarningSentence);
+        
+        //Act
+        var exception = await Assert.ThrowsAsync<WarningSentenceInUseException>(() => _warningSentenceService.DeleteWarningSentenceAsync(testWarningSentence.Id));
+
+        //Assert
+        Assert.NotNull(exception);
+    }
 }
