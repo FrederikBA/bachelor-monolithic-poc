@@ -18,7 +18,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const CopyWarningSentenceModal = ({ isOpen, closeModal }) => {
+const DeleteWarningSentenceModal = ({ isOpen, closeModal }) => {
     return (
         <Modal
             isOpen={isOpen}
@@ -27,7 +27,7 @@ const CopyWarningSentenceModal = ({ isOpen, closeModal }) => {
             contentLabel="Edit Warning Sentence Modal"
         >
             <div className="modal-top-section">
-                <h5 className="modal-header">Kopier H-sætning(er)</h5>
+                <h5 className="modal-header">Slet H-sætning(er)</h5>
                 <div className="close-icon" onClick={closeModal}>
                     <FontAwesomeIcon icon={faTimes} />
                 </div>
@@ -36,10 +36,10 @@ const CopyWarningSentenceModal = ({ isOpen, closeModal }) => {
 
             </div>
             <div className="modal-bottom-section">
-                <button className="right btn btn-outline-primary">Kopier</button>
+                <button className="right btn btn-outline-danger">Slet</button>
             </div>
         </Modal>
     );
 };
 
-export default CopyWarningSentenceModal;
+export default DeleteWarningSentenceModal;

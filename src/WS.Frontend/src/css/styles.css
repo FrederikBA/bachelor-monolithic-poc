@@ -396,6 +396,17 @@ Table {
     color: white !important;
 }
 
+.btn-outline-danger {
+    color: #d9534f !important;
+    border: 1px solid #d9534f !important;
+    border-radius: 0 !important;
+}
+
+.btn-outline-danger:hover {
+    background-color: #d9534f !important;
+    color: white !important;
+}
+
 .close-icon {
     cursor: pointer;
     font-size: 18pt;

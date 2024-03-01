@@ -5,6 +5,7 @@ import SidebarFilter from "../components/sidebar/SidebarFilter";
 import ActionBarWarningSentencesOverview from '../components/actions/ActionBarWarningSentencesOverview';
 import RenameWarningSentenceModal from '../components/modals/RenameWarningSentenceModal';
 import CopyWarningSentenceModal from '../components/modals/CopyWarningSentenceModal';
+import DeleteWarningSentenceModal from '../components/modals/DeleteWarningSentenceModal';
 import warningSentenceService from "../services/warningSentenceService";
 import { Table } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -16,6 +17,7 @@ const WarningSentenceOverview = () => {
     const [checkedWarningSentences, setCheckedWarningSentences] = useState({});
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({
         kategori: {
@@ -135,6 +137,14 @@ const WarningSentenceOverview = () => {
         setIsCopyModalOpen(false);
     };
 
+    const openDeleteModal = () => {
+        setIsDeleteModalOpen(true);
+    };
+
+    const closeDeleteModal = () => {
+        setIsDeleteModalOpen(false);
+    };
+
     return (
         <div>
             <ActionBarWarningSentencesOverview
@@ -144,6 +154,7 @@ const WarningSentenceOverview = () => {
                 isEditEnabled={isEditEnabled}
                 openEditModal={openEditModal}
                 openCopyModal={openCopyModal}
+                openDeleteModal={openDeleteModal}
             />
             <Container fluid>
                 <Row className="overview-row">
@@ -204,7 +215,7 @@ const WarningSentenceOverview = () => {
                     </Col>
                 </Row>
             </Container >
-            {/* Modal component */}
+            {/* Modal components */}
             <RenameWarningSentenceModal
                 isOpen={isEditModalOpen}
                 closeModal={closeEditModal}
@@ -212,6 +223,10 @@ const WarningSentenceOverview = () => {
             <CopyWarningSentenceModal
                 isOpen={isCopyModalOpen}
                 closeModal={closeCopyModal}
+            />
+            <DeleteWarningSentenceModal
+                isOpen={isDeleteModalOpen}
+                closeModal={closeDeleteModal}
             />
         </div>
     )
