@@ -55,4 +55,27 @@ public class WarningSentenceService : IWarningSentenceService
         
         return _warningSentenceRepository.AddAsync(warningSentence);
     }
+
+    public async Task<WarningSentence> CloneWarningSentenceAsync(int id)
+    {
+        //Get the warning sentence that needs to be cloned
+        var warningSentence = await _warningSentenceReadRepository.GetByIdAsync(id);
+        
+        if (warningSentence == null)
+        {
+            throw new WarningSentenceNotFoundException(id);
+        }
+        
+        //Clone the warning sentence
+        var clonedWarningSentence = new WarningSentence
+        {
+            Code = warningSentence.Code + " (Copy)",
+            Text = warningSentence.Text,
+            WarningCategoryId = warningSentence.WarningCategoryId,
+            WarningSignalWordId = warningSentence.WarningSignalWordId,
+            WarningPictogramId = warningSentence.WarningPictogramId
+        };
+        
+        return await _warningSentenceRepository.AddAsync(clonedWarningSentence);
+    }
 }
