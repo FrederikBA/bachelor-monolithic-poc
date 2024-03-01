@@ -99,8 +99,26 @@ public class WarningSentenceService : IWarningSentenceService
         return warningSentence;
     }
 
-    public Task<bool> DeleteWarningSentenceAsync(int id)
+    public async Task<bool> DeleteWarningSentenceAsync(int id)
     {
-        throw new NotImplementedException();
+        //Get the warning sentence that needs to be deleted
+        var warningSentence = await _warningSentenceReadRepository.FirstOrDefaultAsync(new WarningSentenceWithProductsSpec(id));
+        
+        //Check if null
+        if (warningSentence == null)
+        {
+            throw new WarningSentenceNotFoundException(id);
+        }
+        
+        //Check if the warning sentence is in use
+        if (warningSentence.Products!.Count > 0)
+        {
+            throw new WarningSentenceInUseException(warningSentence.Products.Select(p => p.Id).ToList());
+        }
+        
+        //Delete the warning sentence
+        await _warningSentenceRepository.DeleteAsync(warningSentence);
+        
+        return true;
     }
 }

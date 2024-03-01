@@ -12,6 +12,6 @@ public class Product : BaseEntity, IAggregateRoot
     public ProductCategory? ProductCategory { get; set; }
     public Producer? Producer { get; set; }
     public ProductStatus? ProductStatus { get; set; }
-    public List<WarningSentence>? WarningSentences { get; set; }
+    public List<WarningSentence>? WarningSentences { get; set; } = new();
 
 }
