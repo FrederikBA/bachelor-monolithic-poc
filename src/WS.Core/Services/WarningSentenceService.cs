@@ -55,4 +55,9 @@ public class WarningSentenceService : IWarningSentenceService
         
         return _warningSentenceRepository.AddAsync(warningSentence);
     }
+
+    public Task<WarningSentence> CloneWarningSentenceAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
 }
