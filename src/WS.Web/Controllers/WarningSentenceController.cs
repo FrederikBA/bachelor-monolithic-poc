@@ -56,7 +56,7 @@ public class WarningSentenceController : ControllerBase
     [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteWarningSentence(int id)
     {
-        var result = await _warningSentenceService.DeleteWarningSentenceAsync(id);
-        return Ok(result);
+        await _warningSentenceService.DeleteWarningSentenceAsync(id);
+        return Ok("Warning sentence successfully deleted");
     }
 }
