@@ -351,3 +351,52 @@ Table {
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
+
+.modal-top-section {
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-middle-section {
+    padding: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.modal-bottom-section {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-right {
+    margin-left: auto;
+}
+
+
+.form-select-md {
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    height: 50px !important;
+    border-radius: 0 !important;
+}
+
+.btn-outline-primary {
+    color: #2a7c79 !important;
+    border: 1px solid #2a7c79 !important;
+    border-radius: 0 !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: #2a7c79 !important;
+    color: white !important;
+}
+
+.close-icon {
+    cursor: pointer;
+    font-size: 18pt;
+    opacity: 55%;
+}
