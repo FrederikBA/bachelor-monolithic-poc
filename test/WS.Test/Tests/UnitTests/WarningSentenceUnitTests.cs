@@ -109,4 +109,41 @@ public class WarningSentenceUnitTests
         Assert.NotNull(result);
         Assert.Equal(testWarningSentence.Id, result.Id);
     }
+    
+    [Fact]
+    public async Task CloneWarningSentenceAsync_ReturnsWarningSentence()
+    {
+        //Arrange
+        var testWarningSentence = WarningSentenceTestHelper.GetTestWarningSentences().First();
+
+        _warningSentenceReadRepositoryMock.Setup(x =>
+                x.FirstOrDefaultAsync(It.IsAny<Specification<WarningSentence>>(), new CancellationToken()))
+            .ReturnsAsync(testWarningSentence);
+
+        _warningSentenceRepositoryMock.Setup(x =>
+                x.AddAsync(It.IsAny<WarningSentence>(), new CancellationToken()))
+            .ReturnsAsync(testWarningSentence);
+
+        //Act
+        var result = await _warningSentenceService.CloneWarningSentenceAsync(testWarningSentence.Id);
+
+        //Assert
+        Assert.NotNull(result);
+        Assert.Equal(testWarningSentence.Id, result.Id);
+    }
+    
+    [Fact]
+    public async Task CloneWarningSentenceAsync_ThrowsWarningSentenceNotFoundException()
+    {
+        //Arrange
+        _warningSentenceReadRepositoryMock.Setup(x =>
+                x.FirstOrDefaultAsync(It.IsAny<Specification<WarningSentence>>(), new CancellationToken()))
+            .ReturnsAsync((WarningSentence)null!);
+
+        //Act
+        var exception = await Assert.ThrowsAsync<WarningSentenceNotFoundException>(() => _warningSentenceService.CloneWarningSentenceAsync(0));
+
+        //Assert
+        Assert.NotNull(exception);
+    }
 }
