@@ -117,7 +117,7 @@ public class WarningSentenceUnitTests
         var testWarningSentence = WarningSentenceTestHelper.GetTestWarningSentences().First();
 
         _warningSentenceReadRepositoryMock.Setup(x =>
-                x.FirstOrDefaultAsync(It.IsAny<Specification<WarningSentence>>(), new CancellationToken()))
+                x.GetByIdAsync(testWarningSentence.Id, new CancellationToken()))
             .ReturnsAsync(testWarningSentence);
 
         _warningSentenceRepositoryMock.Setup(x =>
