@@ -12,7 +12,8 @@ public class WarningSentenceService : IWarningSentenceService
     private readonly IReadRepository<WarningSentence> _warningSentenceReadRepository;
     private readonly IRepository<WarningSentence> _warningSentenceRepository;
 
-    public WarningSentenceService(IReadRepository<WarningSentence> warningSentenceReadRepository, IRepository<WarningSentence> warningSentenceRepository)
+    public WarningSentenceService(IReadRepository<WarningSentence> warningSentenceReadRepository,
+        IRepository<WarningSentence> warningSentenceRepository)
     {
         _warningSentenceReadRepository = warningSentenceReadRepository;
         _warningSentenceRepository = warningSentenceRepository;
@@ -21,19 +22,20 @@ public class WarningSentenceService : IWarningSentenceService
     public async Task<List<WarningSentence>> GetAllWarningSentencesAsync()
     {
         var warningSentences = await _warningSentenceReadRepository.ListAsync(new GetWarningSentencesFullSpec());
-        
+
         if (warningSentences == null || warningSentences.Count == 0)
         {
             throw new WarningSentencesNotFoundException();
         }
-        
+
         return warningSentences;
     }
 
     public async Task<WarningSentence> GetWarningSentenceByIdAsync(int id)
     {
-        var warningSentence = await _warningSentenceReadRepository.FirstOrDefaultAsync(new GetWarningSentenceByIdFullSpec(id));
-        
+        var warningSentence =
+            await _warningSentenceReadRepository.FirstOrDefaultAsync(new GetWarningSentenceByIdFullSpec(id));
+
         if (warningSentence == null)
         {
             throw new WarningSentenceNotFoundException(id);
@@ -52,7 +54,7 @@ public class WarningSentenceService : IWarningSentenceService
             WarningSignalWordId = warningSentenceDto.WarningSignalWordId,
             WarningPictogramId = warningSentenceDto.WarningPictogramId
         };
-        
+
         return _warningSentenceRepository.AddAsync(warningSentence);
     }
 
@@ -60,12 +62,12 @@ public class WarningSentenceService : IWarningSentenceService
     {
         //Get the warning sentence that needs to be cloned
         var warningSentence = await _warningSentenceReadRepository.GetByIdAsync(id);
-        
+
         if (warningSentence == null)
         {
             throw new WarningSentenceNotFoundException(id);
         }
-        
+
         //Clone the warning sentence
         var clonedWarningSentence = new WarningSentence
         {
@@ -75,12 +77,25 @@ public class WarningSentenceService : IWarningSentenceService
             WarningSignalWordId = warningSentence.WarningSignalWordId,
             WarningPictogramId = warningSentence.WarningPictogramId
         };
-        
+
         return await _warningSentenceRepository.AddAsync(clonedWarningSentence);
     }
 
-    public Task<WarningSentence> RenameWarningSentenceAsync(int id, string renameTo)
+    public async Task<WarningSentence> RenameWarningSentenceAsync(int id, string renameTo)
     {
-        throw new NotImplementedException();
+        //Get the warning sentence that needs to be renamed
+        var warningSentence = await _warningSentenceReadRepository.GetByIdAsync(id);
+
+        if (warningSentence == null)
+        {
+            throw new WarningSentenceNotFoundException(id);
+        }
+        
+        //Rename the warning sentence
+        warningSentence.Code = renameTo;
+        
+        await _warningSentenceRepository.UpdateAsync(warningSentence);
+        
+        return warningSentence;
     }
 }

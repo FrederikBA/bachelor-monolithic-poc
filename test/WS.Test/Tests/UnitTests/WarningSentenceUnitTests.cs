@@ -157,16 +157,13 @@ public class WarningSentenceUnitTests
         _warningSentenceReadRepositoryMock.Setup(x =>
                 x.GetByIdAsync(testWarningSentence.Id, new CancellationToken()))
             .ReturnsAsync(testWarningSentence);
-
-        _warningSentenceRepositoryMock.Setup(x =>
-            x.UpdateAsync(It.IsAny<WarningSentence>(), new CancellationToken()));
-
+        
         //Act
         var result = await _warningSentenceService.RenameWarningSentenceAsync(testWarningSentence.Id, newName);
 
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(newName, result.Text);
+        Assert.Equal(newName, result.Code);
     }
     
     [Fact]
