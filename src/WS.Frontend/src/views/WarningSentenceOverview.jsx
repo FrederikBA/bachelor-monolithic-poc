@@ -4,6 +4,7 @@ import ShwSpinner from "../components/spinners/ShwSpinner";
 import SidebarFilter from "../components/sidebar/SidebarFilter";
 import ActionBarWarningSentencesOverview from '../components/actions/ActionBarWarningSentencesOverview';
 import RenameWarningSentenceModal from '../components/modals/RenameWarningSentenceModal';
+import CopyWarningSentenceModal from '../components/modals/CopyWarningSentenceModal';
 import warningSentenceService from "../services/warningSentenceService";
 import { Table } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -14,6 +15,7 @@ const WarningSentenceOverview = () => {
     const [warningSentences, setWarningSentences] = useState([]);
     const [checkedWarningSentences, setCheckedWarningSentences] = useState({});
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({
         kategori: {
@@ -125,6 +127,14 @@ const WarningSentenceOverview = () => {
         setIsEditModalOpen(false);
     };
 
+    const openCopyModal = () => {
+        setIsCopyModalOpen(true);
+    };
+
+    const closeCopyModal = () => {
+        setIsCopyModalOpen(false);
+    };
+
     return (
         <div>
             <ActionBarWarningSentencesOverview
@@ -133,6 +143,7 @@ const WarningSentenceOverview = () => {
                 hasCheckedSentences={Object.values(checkedWarningSentences).some(value => value)}
                 isEditEnabled={isEditEnabled}
                 openEditModal={openEditModal}
+                openCopyModal={openCopyModal}
             />
             <Container fluid>
                 <Row className="overview-row">
@@ -197,6 +208,10 @@ const WarningSentenceOverview = () => {
             <RenameWarningSentenceModal
                 isOpen={isEditModalOpen}
                 closeModal={closeEditModal}
+            />
+            <CopyWarningSentenceModal
+                isOpen={isCopyModalOpen}
+                closeModal={closeCopyModal}
             />
         </div>
     )
