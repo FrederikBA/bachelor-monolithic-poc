@@ -39,11 +39,11 @@ public class WarningSentenceController : ControllerBase
         return Ok(warningSentence);
     }
     
-    [HttpPost("copy/{id}")]
-    public async Task<IActionResult> CopyWarningSentence(int id)
+    [HttpPost("copy")]
+    public async Task<IActionResult> CopyWarningSentence(CopyWarningSentenceDto copyWarningSentenceDto)
     {
-        var warningSentence = await _warningSentenceService.CloneWarningSentenceAsync(id);
-        return Ok(warningSentence);
+        var warningSentences = await _warningSentenceService.CloneWarningSentenceAsync(copyWarningSentenceDto.Ids);
+        return Ok(warningSentences);
     }
     
     [HttpPut("rename/{id}")]
@@ -53,10 +53,10 @@ public class WarningSentenceController : ControllerBase
         return Ok(warningSentence);
     }
     
-    [HttpDelete("delete/{id}")]
-    public async Task<IActionResult> DeleteWarningSentence(int id)
+    [HttpDelete("delete")]
+    public async Task<IActionResult> DeleteWarningSentence([FromQuery]List<int> ids)
     {
-        await _warningSentenceService.DeleteWarningSentenceAsync(id);
-        return Ok("Warning sentence successfully deleted");
+        await _warningSentenceService.DeleteWarningSentenceAsync(ids);
+        return Ok("Warning sentence(s) successfully deleted");
     }
 }
