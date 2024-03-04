@@ -23,4 +23,18 @@ public class WarningSentenceModalService : IWarningSentenceModalService
             Code = warningSentence.Code
         };
     }
+
+    public async Task<List<WarningSentenceBaseViewModel>> GetWarningSentencesModalAsync(List<int> ids)
+    {
+        var warningSentences = new List<WarningSentenceBaseViewModel>();
+        
+        foreach (var id in ids)
+        {
+            var warningSentence = await GetWarningSentenceModalAsync(id);
+            
+            warningSentences.Add(warningSentence);
+        }
+
+        return warningSentences;
+    }
 }
