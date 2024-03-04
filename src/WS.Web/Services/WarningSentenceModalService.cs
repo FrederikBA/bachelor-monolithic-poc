@@ -58,7 +58,10 @@ public class WarningSentenceModalService : IWarningSentenceModalService
             WarningPictograms = warningPictograms.Select(warningPictogram => new WarningPictogramFormViewModel
             {
                 Id = warningPictogram.Id,
-                Text = warningPictogram.Text
+                Code = warningPictogram.Code,
+                Text = warningPictogram.Text,
+                Pictogram = warningPictogram.Pictogram,
+                Extension = warningPictogram.Extension
             }).ToList(),
             WarningSignalWords = warningSignalWords.Select(warningSignalWord => new WarningSignalWordFormViewModel
             {

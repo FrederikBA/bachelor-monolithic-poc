@@ -13,6 +13,13 @@ public class WarningSentenceModalController : ControllerBase
     {
         _warningSentenceModalService = warningSentenceModalService;
     }
+    
+    [HttpGet("create")]
+    public async Task<IActionResult> GetCreateModalContent()
+    {
+        var warningSentence = await _warningSentenceModalService.GetCreateFormModalAsync();
+        return Ok(warningSentence);
+    }
 
     [HttpGet("rename/{id}")]
     public async Task<IActionResult> GetRenameModalContent(int id)

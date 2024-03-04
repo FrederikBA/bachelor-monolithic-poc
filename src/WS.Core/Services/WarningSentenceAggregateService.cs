@@ -20,6 +20,10 @@ public class WarningSentenceAggregateService : IWarningSentenceAggregateService
     public async Task<List<WarningCategory>> GetAllWarningCategoriesAsync()
     {
         var categories = await _warningCategoryReadRepository.ListAsync();
+        
+        //Get only warning sentence with Type = "Hazard"
+        categories = categories.Where(c => c.WarningTypeId == 2).ToList();
+        
         return categories;
     }
 
