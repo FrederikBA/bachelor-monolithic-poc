@@ -20,4 +20,18 @@ public class WarningSentenceModalController : ControllerBase
         var warningSentence = await _warningSentenceModalService.GetWarningSentenceModalAsync(id);
         return Ok(warningSentence);
     }
+    
+    [HttpGet("copy")]
+    public async Task<IActionResult> GetCopyModalContent([FromQuery] List<int> ids)
+    {
+        var warningSentences = await _warningSentenceModalService.GetWarningSentencesModalAsync(ids);
+        return Ok(warningSentences);
+    }
+    
+    [HttpGet("delete")]
+    public async Task<IActionResult> GetDeleteModalContent([FromQuery] List<int> ids)
+    {
+        var warningSentence = await _warningSentenceModalService.GetWarningSentencesModalAsync(ids);
+        return Ok(warningSentence);
+    }
 }
