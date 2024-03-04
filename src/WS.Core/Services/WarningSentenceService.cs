@@ -43,7 +43,20 @@ public class WarningSentenceService : IWarningSentenceService
 
         return warningSentence;
     }
+    
+    public async Task<WarningSentence> GetWarningSentenceBaseByIdAsync(int id)
+    {
+        //Get warning sentence by id, no specification (no joins)
+        var warningSentence = await _warningSentenceReadRepository.GetByIdAsync(id);
+        
+        if (warningSentence == null)
+        {
+            throw new WarningSentenceNotFoundException(id);
+        }
 
+        return warningSentence;
+    }
+    
     public Task<WarningSentence> AddWarningSentenceAsync(WarningSentenceDto warningSentenceDto)
     {
         var warningSentence = new WarningSentence

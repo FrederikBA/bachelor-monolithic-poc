@@ -45,6 +45,7 @@ builder.Services.AddScoped<IWarningSentenceService, WarningSentenceService>();
 
 builder.Services.AddScoped<IProductViewModelService, ProductViewModelService>();
 builder.Services.AddScoped<IWarningSentenceViewModelService, WarningSentenceViewModelService>();
+builder.Services.AddScoped<IWarningSentenceModalService, WarningSentenceModalService>();
 
 var app = builder.Build();
 
