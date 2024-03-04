@@ -1,3 +1,4 @@
+using WS.Core.Interfaces.AggregateServices;
 using WS.Core.Interfaces.DomainServices;
 using WS.Web.Interfaces;
 using WS.Web.ViewModels.WarningSentence;
@@ -8,10 +9,12 @@ namespace WS.Web.Services;
 public class WarningSentenceModalService : IWarningSentenceModalService
 {
     private readonly IWarningSentenceService _warningSentenceService;
+    private readonly IWarningSentenceAggregateService _warningSentenceAggregateService;
 
-    public WarningSentenceModalService(IWarningSentenceService warningSentenceService)
+    public WarningSentenceModalService(IWarningSentenceService warningSentenceService, IWarningSentenceAggregateService warningSentenceAggregateService)
     {
         _warningSentenceService = warningSentenceService;
+        _warningSentenceAggregateService = warningSentenceAggregateService;
     }
 
     public async Task<WarningSentenceBaseViewModel> GetWarningSentenceModalAsync(int id)
@@ -41,6 +44,27 @@ public class WarningSentenceModalService : IWarningSentenceModalService
 
     public async Task<WarningSentenceFormViewModel> GetCreateFormModalAsync()
     {
-        throw new NotImplementedException();
+        var warningCategories = await _warningSentenceAggregateService.GetAllWarningCategoriesAsync();
+        var warningPictograms = await _warningSentenceAggregateService.GetAllWarningPictogramsAsync();
+        var warningSignalWords = await _warningSentenceAggregateService.GetAllWarningSignalWordsAsync();
+        
+        return new WarningSentenceFormViewModel
+        {
+            WarningCategories = warningCategories.Select(warningCategory => new WarningCategoryFormViewModel
+            {
+                Id = warningCategory.Id,
+                Text = warningCategory.Text
+            }).ToList(),
+            WarningPictograms = warningPictograms.Select(warningPictogram => new WarningPictogramFormViewModel
+            {
+                Id = warningPictogram.Id,
+                Text = warningPictogram.Text
+            }).ToList(),
+            WarningSignalWords = warningSignalWords.Select(warningSignalWord => new WarningSignalWordFormViewModel
+            {
+                Id = warningSignalWord.Id,
+                SignalWordText = warningSignalWord.SignalWordText
+            }).ToList()
+        };
     }
 }
