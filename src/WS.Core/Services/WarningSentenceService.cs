@@ -43,7 +43,12 @@ public class WarningSentenceService : IWarningSentenceService
 
         return warningSentence;
     }
-
+    
+    public Task<WarningSentence> GetWarningSentenceBaseByIdAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+    
     public Task<WarningSentence> AddWarningSentenceAsync(WarningSentenceDto warningSentenceDto)
     {
         var warningSentence = new WarningSentence
