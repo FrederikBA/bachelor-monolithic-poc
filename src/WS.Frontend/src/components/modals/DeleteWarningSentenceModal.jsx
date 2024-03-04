@@ -75,8 +75,8 @@ const DeleteWarningSentenceModal = ({ isOpen, closeModal, content, onDelete, not
             </div>
             <div className="modal-middle-section">
                 <ul>
-                    {warningSentences.map((item) => (
-                        <li key={item.id}>{item.code}</li>
+                    {warningSentences.map((item, index) => (
+                        <li key={index}>{item.code}</li>
                     ))}
                 </ul>
             </div>

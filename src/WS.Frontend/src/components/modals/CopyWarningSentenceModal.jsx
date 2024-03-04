@@ -48,12 +48,6 @@ const CopyWarningSentenceModal = ({ isOpen, closeModal, content, onCopy, notifyS
         }
     }, [isOpen, content]);
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            copyWarningSentence();
-        }
-    };
-
     const copyWarningSentences = async () => {
         try {
             const checkedIdsasNumber = listUtils.stringToNumbers(checkedSentenceIds)
@@ -82,8 +76,8 @@ const CopyWarningSentenceModal = ({ isOpen, closeModal, content, onCopy, notifyS
             </div>
             <div className="modal-middle-section">
                 <ul>
-                    {warningSentences.map((item) => (
-                        <li key={item.id}>{item.code}</li>
+                    {warningSentences.map((item, index) => (
+                        <li key={index}>{item.code}</li>
                     ))}
                 </ul>
             </div>
