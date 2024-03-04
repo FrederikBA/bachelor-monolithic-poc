@@ -3,8 +3,12 @@ import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-// Services
+//Services
 import warningSentenceModalService from '../../services/warningSentenceModalService';
+import warningSentenceService from '../../services/warningSentenceService';
+
+//Utils
+
 
 const customStyles = {
     content: {
@@ -21,22 +25,21 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const RenameWarningSentenceModal = ({ isOpen, closeModal, content }) => {
+const RenameWarningSentenceModal = ({ isOpen, closeModal, content, onRename }) => {
     const [inputValue, setInputValue] = useState('');
     const [warningSentence, setWarningSentence] = useState({});
+    const checkedSentenceIds = Object.entries(content)
+        .filter(([id, isChecked]) => isChecked)
+        .map(([id, isChecked]) => id);
 
     useEffect(() => {
         if (isOpen) {
-            const checkedSentenceIds = Object.entries(content)
-                .filter(([id, isChecked]) => isChecked)
-                .map(([id, isChecked]) => id);
-
             if (checkedSentenceIds.length === 1) {
                 const fetchData = async () => {
                     try {
                         const response = await warningSentenceModalService.getRenameContent(checkedSentenceIds[0]);
-                        setWarningSentence(response);
                         setInputValue(response.code);
+                        setWarningSentence(response)
                     } catch (error) {
                         console.log(error);
                     }
@@ -48,6 +51,22 @@ const RenameWarningSentenceModal = ({ isOpen, closeModal, content }) => {
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            renameWarningSentence();
+        }
+    };
+
+    const renameWarningSentence = async () => {
+        try {
+            await warningSentenceService.renameWarningSentence(warningSentence.id, inputValue);
+            onRename();
+            closeModal();
+        } catch (error) {
+            console.error('Error renaming warning sentence:', error);
+        }
     };
 
     return (
@@ -71,13 +90,14 @@ const RenameWarningSentenceModal = ({ isOpen, closeModal, content }) => {
                     aria-label=".form-control-lg example"
                     value={inputValue}
                     onChange={handleInputChange}
+                    onKeyDown={handleKeyDown}
                 />
                 <label className={inputValue ? "input-label input-label-up" : "input-label"}>
                     Omdøb kode
                 </label>
             </div>
             <div className="modal-bottom-section">
-                <button className="right btn btn-outline-primary">Gem</button>
+                <button onClick={renameWarningSentence} className="right btn btn-outline-primary">Gem</button>
             </div>
         </Modal>
     );

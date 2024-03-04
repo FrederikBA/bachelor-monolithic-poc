@@ -5,6 +5,10 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 //Services
 import warningSentenceModalService from '../../services/warningSentenceModalService';
+import warningSentenceService from '../../services/warningSentenceService';
+
+//Utils
+import listUtils from "../../utils/listUtils";
 
 const customStyles = {
     content: {
@@ -21,15 +25,15 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const CopyWarningSentenceModal = ({ isOpen, closeModal, content }) => {
+const CopyWarningSentenceModal = ({ isOpen, closeModal, content, onCopy }) => {
     const [warningSentences, setWarningSentences] = useState([{}]);
+    const checkedSentenceIds = Object.entries(content)
+        .filter(([id, isChecked]) => isChecked)
+        .map(([id, isChecked]) => id);
+
 
     useEffect(() => {
         if (isOpen) {
-            const checkedSentenceIds = Object.entries(content)
-                .filter(([id, isChecked]) => isChecked)
-                .map(([id, isChecked]) => id);
-
             if (checkedSentenceIds.length > 0) {
                 const fetchData = async () => {
                     try {
@@ -44,12 +48,30 @@ const CopyWarningSentenceModal = ({ isOpen, closeModal, content }) => {
         }
     }, [isOpen, content]);
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            copyWarningSentence();
+        }
+    };
+
+    const copyWarningSentences = async () => {
+        try {
+            const checkedIdsasNumber = listUtils.stringToNumbers(checkedSentenceIds)
+
+            await warningSentenceService.copyWarningSentences(checkedIdsasNumber);
+            onCopy();
+            closeModal();
+        } catch (error) {
+            console.error('Error copying warning sentence(s):', error);
+        }
+    };
+
     return (
         <Modal
             isOpen={isOpen}
             onRequestClose={closeModal}
             style={customStyles}
-            contentLabel="Edit Warning Sentence Modal"
+            contentLabel="Delete Warning Sentence Modal"
         >
             <div className="modal-top-section">
                 <h5 className="modal-header">Kopier H-sætning(er)</h5>
@@ -65,7 +87,7 @@ const CopyWarningSentenceModal = ({ isOpen, closeModal, content }) => {
                 </ul>
             </div>
             <div className="modal-bottom-section">
-                <button className="right btn btn-outline-primary">Kopier</button>
+                <button onClick={copyWarningSentences} className="right btn btn-outline-primary">Kopier</button>
             </div>
         </Modal>
     );

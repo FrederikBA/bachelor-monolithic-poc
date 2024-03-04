@@ -152,6 +152,21 @@ const WarningSentenceOverview = () => {
         setIsDeleteModalOpen(false);
     };
 
+    //Modal Functions
+    const refreshOverview = async () => {
+        try {
+            const response = await warningSentenceService.getAllWarningSentences();
+            response.sort((a, b) => {
+                if (a.code < b.code) return -1;
+                if (a.code > b.code) return 1;
+                return 0;
+            });
+            setWarningSentences(response);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div>
             <ActionBarWarningSentencesOverview
@@ -227,16 +242,20 @@ const WarningSentenceOverview = () => {
                 isOpen={isEditModalOpen}
                 closeModal={closeEditModal}
                 content={checkedWarningSentences}
+                onRename={refreshOverview}
             />
+
             <CopyWarningSentenceModal
                 isOpen={isCopyModalOpen}
                 closeModal={closeCopyModal}
                 content={checkedWarningSentences}
+                onCopy={refreshOverview}
             />
             <DeleteWarningSentenceModal
                 isOpen={isDeleteModalOpen}
                 closeModal={closeDeleteModal}
                 content={checkedWarningSentences}
+                onDelete={refreshOverview}
             />
         </div>
     )

@@ -22,9 +22,42 @@ const warningSentenceService = () => {
         }
     };
 
+    const renameWarningSentence = async (warningSentenceId, name) => {
+        try {
+            const response = await axios.put(`${URL}/WarningSentence/rename/${warningSentenceId}?newName=${name}`);
+            return response.data;
+        } catch (error) {
+            throw new Error('Error renaming warning sentence');
+        }
+    };
+
+    const copyWarningSentences = async (warningSentenceIds) => {
+        try {
+            const response = await axios.post(`${URL}/WarningSentence/copy`, {
+                ids: warningSentenceIds
+            });
+            return response.data;
+        } catch (error) {
+            throw new Error('Error copying warning sentence');
+        }
+    };
+
+    const deleteWarningSentences = async (warningSentenceIds) => {
+        try {
+            const queryParams = warningSentenceIds.map(id => `ids=${id}`).join('&');
+            const response = await axios.delete(`${URL}/WarningSentence/delete?${queryParams}`);
+            return response.data;
+        } catch (error) {
+            throw new Error('Error deleting warning sentence');
+        }
+    };
+
     return {
         getAllWarningSentences,
-        getWarningSentenceById
+        getWarningSentenceById,
+        renameWarningSentence,
+        copyWarningSentences,
+        deleteWarningSentences
     };
 };
 
