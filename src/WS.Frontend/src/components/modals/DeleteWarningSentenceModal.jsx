@@ -25,7 +25,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const DeleteWarningSentenceModal = ({ isOpen, closeModal, content, onDelete }) => {
+const DeleteWarningSentenceModal = ({ isOpen, closeModal, content, onDelete, notifySuccess, notifyError }) => {
     const [warningSentences, setWarningSentences] = useState([{}]);
     const checkedSentenceIds = Object.entries(content)
         .filter(([id, isChecked]) => isChecked)
@@ -52,10 +52,11 @@ const DeleteWarningSentenceModal = ({ isOpen, closeModal, content, onDelete }) =
             const checkedIdsasNumber = listUtils.stringToNumbers(checkedSentenceIds)
 
             await warningSentenceService.deleteWarningSentences(checkedIdsasNumber);
+            notifySuccess("H-sætning(er) slettet.")
             onDelete();
             closeModal();
         } catch (error) {
-            console.error('Error copying warning sentence(s):', error);
+            notifyError('Der opstod en fejl.');
         }
     };
 

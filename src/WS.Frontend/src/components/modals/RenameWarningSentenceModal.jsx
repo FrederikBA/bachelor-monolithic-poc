@@ -25,7 +25,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const RenameWarningSentenceModal = ({ isOpen, closeModal, content, onRename }) => {
+const RenameWarningSentenceModal = ({ isOpen, closeModal, content, onRename, notifySuccess, notifyError }) => {
     const [inputValue, setInputValue] = useState('');
     const [warningSentence, setWarningSentence] = useState({});
     const checkedSentenceIds = Object.entries(content)
@@ -41,7 +41,6 @@ const RenameWarningSentenceModal = ({ isOpen, closeModal, content, onRename }) =
                         setInputValue(response.code);
                         setWarningSentence(response)
                     } catch (error) {
-                        console.log(error);
                     }
                 };
                 fetchData();
@@ -62,10 +61,11 @@ const RenameWarningSentenceModal = ({ isOpen, closeModal, content, onRename }) =
     const renameWarningSentence = async () => {
         try {
             await warningSentenceService.renameWarningSentence(warningSentence.id, inputValue);
+            notifySuccess("H-sætning omdøbt.")
             onRename();
             closeModal();
         } catch (error) {
-            console.error('Error renaming warning sentence:', error);
+            notifyError('Der opstod en fejl.');
         }
     };
 

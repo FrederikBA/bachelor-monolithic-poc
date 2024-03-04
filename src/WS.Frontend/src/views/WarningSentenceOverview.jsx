@@ -19,6 +19,10 @@ import Col from 'react-bootstrap/Col';
 //Services
 import warningSentenceService from "../services/warningSentenceService";
 
+//Toast
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const WarningSentenceOverview = () => {
     const [warningSentences, setWarningSentences] = useState([]);
     const [checkedWarningSentences, setCheckedWarningSentences] = useState({});
@@ -127,7 +131,7 @@ const WarningSentenceOverview = () => {
         return categoryMatch || signalWordMatch;
     };
 
-    /* MODALS */
+    // Modals
     const openEditModal = () => {
         setIsEditModalOpen(true);
     };
@@ -165,6 +169,15 @@ const WarningSentenceOverview = () => {
         } catch (error) {
             console.log(error);
         }
+    };
+
+    //Toast
+    const notifySuccess = (message) => {
+        toast.success(message, { position: "bottom-right" });
+    };
+
+    const notifyError = (errorMessage) => {
+        toast.error(errorMessage, { position: "bottom-right" });
     };
 
     return (
@@ -243,6 +256,8 @@ const WarningSentenceOverview = () => {
                 closeModal={closeEditModal}
                 content={checkedWarningSentences}
                 onRename={refreshOverview}
+                notifySuccess={notifySuccess}
+                notifyError={notifyError}
             />
 
             <CopyWarningSentenceModal
@@ -250,13 +265,18 @@ const WarningSentenceOverview = () => {
                 closeModal={closeCopyModal}
                 content={checkedWarningSentences}
                 onCopy={refreshOverview}
+                notifySuccess={notifySuccess}
+                notifyError={notifyError}
             />
             <DeleteWarningSentenceModal
                 isOpen={isDeleteModalOpen}
                 closeModal={closeDeleteModal}
                 content={checkedWarningSentences}
                 onDelete={refreshOverview}
+                notifySuccess={notifySuccess}
+                notifyError={notifyError}
             />
+            <ToastContainer />
         </div>
     )
 }

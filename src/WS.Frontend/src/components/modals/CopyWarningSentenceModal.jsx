@@ -25,7 +25,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const CopyWarningSentenceModal = ({ isOpen, closeModal, content, onCopy }) => {
+const CopyWarningSentenceModal = ({ isOpen, closeModal, content, onCopy, notifySuccess, notifyError }) => {
     const [warningSentences, setWarningSentences] = useState([{}]);
     const checkedSentenceIds = Object.entries(content)
         .filter(([id, isChecked]) => isChecked)
@@ -59,10 +59,11 @@ const CopyWarningSentenceModal = ({ isOpen, closeModal, content, onCopy }) => {
             const checkedIdsasNumber = listUtils.stringToNumbers(checkedSentenceIds)
 
             await warningSentenceService.copyWarningSentences(checkedIdsasNumber);
+            notifySuccess("H-sætning(er) kopieret.")
             onCopy();
             closeModal();
         } catch (error) {
-            console.error('Error copying warning sentence(s):', error);
+            notifyError('Der opstod en fejl.');
         }
     };
 
