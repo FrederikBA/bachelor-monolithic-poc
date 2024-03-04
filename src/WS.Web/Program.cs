@@ -36,8 +36,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Build repositories
-builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
+builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfReadRepository<>));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
 
 //Build services
 builder.Services.AddScoped<IProductService, ProductService>();
