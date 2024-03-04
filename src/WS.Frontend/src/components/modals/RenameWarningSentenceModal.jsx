@@ -47,7 +47,7 @@ const RenameWarningSentenceModal = ({ isOpen, closeModal, content }) => {
     }, [isOpen, content]);
 
     const handleInputChange = (e) => {
-        setInputValue(e.target.value); // Update inputValue on input change
+        setInputValue(e.target.value);
     };
 
     return (
@@ -70,7 +70,7 @@ const RenameWarningSentenceModal = ({ isOpen, closeModal, content }) => {
                     placeholder=""
                     aria-label=".form-control-lg example"
                     value={inputValue}
-                    onChange={handleInputChange} // Handle input change
+                    onChange={handleInputChange}
                 />
                 <label className={inputValue ? "input-label input-label-up" : "input-label"}>
                     Omdøb kode
