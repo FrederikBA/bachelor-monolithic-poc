@@ -70,7 +70,7 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
 
     const createWarningSentences = async () => {
         try {
-            // await warningSentenceService.createWarningSentences();
+            await warningSentenceService.createWarningSentence(warningSentence)
             notifySuccess("H-sætning oprettet.")
             onCreate();
             closeModal();

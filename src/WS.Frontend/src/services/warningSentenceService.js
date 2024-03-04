@@ -52,12 +52,23 @@ const warningSentenceService = () => {
         }
     };
 
+    const createWarningSentence = async (warningSentence) => {
+        try {
+            const response = await axios.post(`${URL}/WarningSentence/add`, warningSentence);
+            return response.data;
+        } catch (error) {
+            throw new Error('Error creating warning sentence');
+        }
+    };
+
+
     return {
         getAllWarningSentences,
         getWarningSentenceById,
         renameWarningSentence,
         copyWarningSentences,
-        deleteWarningSentences
+        deleteWarningSentences,
+        createWarningSentence
     };
 };
 
