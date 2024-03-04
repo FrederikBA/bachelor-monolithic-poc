@@ -13,7 +13,7 @@ public class WarningSentenceModalController : ControllerBase
     {
         _warningSentenceModalService = warningSentenceModalService;
     }
-    
+
     [HttpGet("rename/{id}")]
     public async Task<IActionResult> GetRenameModalContent(int id)
     {
