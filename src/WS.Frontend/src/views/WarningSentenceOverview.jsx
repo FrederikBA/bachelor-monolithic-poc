@@ -219,6 +219,7 @@ const WarningSentenceOverview = () => {
             <RenameWarningSentenceModal
                 isOpen={isEditModalOpen}
                 closeModal={closeEditModal}
+                content={checkedWarningSentences}
             />
             <CopyWarningSentenceModal
                 isOpen={isCopyModalOpen}
