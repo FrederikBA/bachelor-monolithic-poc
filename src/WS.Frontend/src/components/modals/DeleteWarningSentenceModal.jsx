@@ -23,13 +23,12 @@ Modal.setAppElement('#root');
 
 const DeleteWarningSentenceModal = ({ isOpen, closeModal, content }) => {
     const [warningSentences, setWarningSentences] = useState([{}]);
+    const checkedSentenceIds = Object.entries(content)
+        .filter(([id, isChecked]) => isChecked)
+        .map(([id, isChecked]) => id);
 
     useEffect(() => {
         if (isOpen) {
-            const checkedSentenceIds = Object.entries(content)
-                .filter(([id, isChecked]) => isChecked)
-                .map(([id, isChecked]) => id);
-
             if (checkedSentenceIds.length > 0) {
                 const fetchData = async () => {
                     try {

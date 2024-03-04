@@ -153,7 +153,7 @@ const WarningSentenceOverview = () => {
     };
 
     //Modal Functions
-    const handleRenameWarningSentence = async () => {
+    const refreshOverview = async () => {
         try {
             const response = await warningSentenceService.getAllWarningSentences();
             response.sort((a, b) => {
@@ -166,7 +166,6 @@ const WarningSentenceOverview = () => {
             console.log(error);
         }
     };
-
 
     return (
         <div>
@@ -243,18 +242,20 @@ const WarningSentenceOverview = () => {
                 isOpen={isEditModalOpen}
                 closeModal={closeEditModal}
                 content={checkedWarningSentences}
-                onRename={handleRenameWarningSentence}
+                onRename={refreshOverview}
             />
 
             <CopyWarningSentenceModal
                 isOpen={isCopyModalOpen}
                 closeModal={closeCopyModal}
                 content={checkedWarningSentences}
+                onCopy={refreshOverview}
             />
             <DeleteWarningSentenceModal
                 isOpen={isDeleteModalOpen}
                 closeModal={closeDeleteModal}
                 content={checkedWarningSentences}
+                onDelete={refreshOverview}
             />
         </div>
     )

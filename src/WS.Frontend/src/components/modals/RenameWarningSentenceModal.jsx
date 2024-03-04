@@ -3,9 +3,12 @@ import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-// Services
+//Services
 import warningSentenceModalService from '../../services/warningSentenceModalService';
 import warningSentenceService from '../../services/warningSentenceService';
+
+//Utils
+
 
 const customStyles = {
     content: {
@@ -25,13 +28,12 @@ Modal.setAppElement('#root');
 const RenameWarningSentenceModal = ({ isOpen, closeModal, content, onRename }) => {
     const [inputValue, setInputValue] = useState('');
     const [warningSentence, setWarningSentence] = useState({});
+    const checkedSentenceIds = Object.entries(content)
+        .filter(([id, isChecked]) => isChecked)
+        .map(([id, isChecked]) => id);
 
     useEffect(() => {
         if (isOpen) {
-            const checkedSentenceIds = Object.entries(content)
-                .filter(([id, isChecked]) => isChecked)
-                .map(([id, isChecked]) => id);
-
             if (checkedSentenceIds.length === 1) {
                 const fetchData = async () => {
                     try {
@@ -88,7 +90,7 @@ const RenameWarningSentenceModal = ({ isOpen, closeModal, content, onRename }) =
                     aria-label=".form-control-lg example"
                     value={inputValue}
                     onChange={handleInputChange}
-                    onKeyDown={handleKeyDown} // Listen for Enter key press
+                    onKeyDown={handleKeyDown}
                 />
                 <label className={inputValue ? "input-label input-label-up" : "input-label"}>
                     Omdøb kode

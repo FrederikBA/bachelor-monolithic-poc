@@ -31,11 +31,23 @@ const warningSentenceService = () => {
         }
     };
 
+    const copyWarningSentences = async (warningSentenceIds) => {
+        try {
+            const response = await axios.post(`${URL}/WarningSentence/copy`, {
+                ids: warningSentenceIds
+            });
+            return response.data;
+        } catch (error) {
+            throw new Error('Error copying warning sentence');
+        }
+    };
+
 
     return {
         getAllWarningSentences,
         getWarningSentenceById,
-        renameWarningSentence
+        renameWarningSentence,
+        copyWarningSentences
     };
 };
 
