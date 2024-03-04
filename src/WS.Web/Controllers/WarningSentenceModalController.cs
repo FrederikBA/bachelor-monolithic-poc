@@ -18,6 +18,6 @@ public class WarningSentenceModalController : ControllerBase
     public async Task<IActionResult> GetRenameModalContent(int id)
     {
         var warningSentence = await _warningSentenceModalService.GetWarningSentenceModalAsync(id);
-        return Ok("warningSentence");
+        return Ok(warningSentence);
     }
 }
