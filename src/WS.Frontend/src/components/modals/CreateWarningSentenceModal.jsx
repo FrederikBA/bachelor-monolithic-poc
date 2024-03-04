@@ -28,7 +28,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySuccess, notifyError }) => {
-    const [warningSentence, setWarningSentence] = useState({ code: "", text: "", warningTypeId: 2, warningCategoryId: 4, warningPictogramId: 1, warningSignalWordId: 1 });
+    const [warningSentence, setWarningSentence] = useState({ code: "", text: "", warningTypeId: 2, warningCategoryId: 0, warningPictogramId: 0, warningSignalWordId: 0 });
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedPictogram, setSelectedPictogram] = useState('');
     const [selectedSignalWord, setSelectedSignalWord] = useState('');
