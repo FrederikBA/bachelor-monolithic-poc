@@ -5,7 +5,7 @@ using WS.Web.ViewModels.WarningSentence;
 using WS.Web.ViewModels.WarningSentence.CreateForm;
 
 namespace WS.Web.Services;
-
+ 
 public class WarningSentenceModalService : IWarningSentenceModalService
 {
     private readonly IWarningSentenceService _warningSentenceService;

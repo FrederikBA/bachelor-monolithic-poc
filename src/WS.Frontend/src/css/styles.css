@@ -435,3 +435,36 @@ Table {
     bottom: 0;
     opacity: 0.5;
 }
+
+.modal-row {
+    padding-bottom: 40px;
+}
+
+.create-input {
+    margin-bottom: 20px !important;
+}
+
+.create-select {
+    padding: 10px;
+}
+
+.image-select {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-select img {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.image-select img.selected {
+    border: 2px solid #2a7c79;
+}
+
+.image-select img:hover {
+    transform: scale(1.1);
+}

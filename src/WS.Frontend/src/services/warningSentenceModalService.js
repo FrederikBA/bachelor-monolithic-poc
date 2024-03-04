@@ -34,10 +34,20 @@ const warningSentenceModalService = () => {
         }
     };
 
+    const getCreateContent = async () => {
+        try {
+            const response = await axios.get(URL + '/warningsentence/modal/create')
+            return response.data
+        } catch (error) {
+            throw new Error('Error fetching modal content');
+        }
+    };
+
     return {
         getRenameContent,
         getCopyContent,
-        getDeleteContent
+        getDeleteContent,
+        getCreateContent
     };
 };
 

@@ -9,6 +9,7 @@ import ActionBarWarningSentencesOverview from '../components/actions/ActionBarWa
 import RenameWarningSentenceModal from '../components/modals/RenameWarningSentenceModal';
 import CopyWarningSentenceModal from '../components/modals/CopyWarningSentenceModal';
 import DeleteWarningSentenceModal from '../components/modals/DeleteWarningSentenceModal';
+import CreateWarningSentenceModal from '../components/modals/CreateWarningSentenceModal';
 
 //React Bootstrap
 import { Table } from 'react-bootstrap';
@@ -29,6 +30,7 @@ const WarningSentenceOverview = () => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({
         kategori: {
@@ -156,6 +158,14 @@ const WarningSentenceOverview = () => {
         setIsDeleteModalOpen(false);
     };
 
+    const openCreateModal = () => {
+        setIsCreateModalOpen(true);
+    };
+
+    const closeCreateModal = () => {
+        setIsCreateModalOpen(false);
+    };
+
     //Modal Functions
     const refreshOverview = async () => {
         try {
@@ -190,6 +200,7 @@ const WarningSentenceOverview = () => {
                 openEditModal={openEditModal}
                 openCopyModal={openCopyModal}
                 openDeleteModal={openDeleteModal}
+                openCreateModal={openCreateModal}
             />
             <Container fluid>
                 <Row className="overview-row">
@@ -273,6 +284,13 @@ const WarningSentenceOverview = () => {
                 closeModal={closeDeleteModal}
                 content={checkedWarningSentences}
                 onDelete={refreshOverview}
+                notifySuccess={notifySuccess}
+                notifyError={notifyError}
+            />
+            <CreateWarningSentenceModal
+                isOpen={isCreateModalOpen}
+                closeModal={closeCreateModal}
+                onCreate={refreshOverview}
                 notifySuccess={notifySuccess}
                 notifyError={notifyError}
             />
