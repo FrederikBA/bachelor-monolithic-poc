@@ -290,7 +290,6 @@ const WarningSentenceOverview = () => {
             <CreateWarningSentenceModal
                 isOpen={isCreateModalOpen}
                 closeModal={closeCreateModal}
-                content={checkedWarningSentences}
                 onCreate={refreshOverview}
                 notifySuccess={notifySuccess}
                 notifyError={notifyError}
