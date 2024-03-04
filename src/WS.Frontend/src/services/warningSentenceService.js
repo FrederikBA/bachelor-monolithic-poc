@@ -22,9 +22,20 @@ const warningSentenceService = () => {
         }
     };
 
+    const renameWarningSentence = async (warningSentenceId, name) => {
+        try {
+            const response = await axios.put(`${URL}/WarningSentence/rename/${warningSentenceId}?newName=${name}`);
+            return response.data;
+        } catch (error) {
+            throw new Error('Error renaming warning sentence');
+        }
+    };
+
+
     return {
         getAllWarningSentences,
-        getWarningSentenceById
+        getWarningSentenceById,
+        renameWarningSentence
     };
 };
 
