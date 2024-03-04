@@ -1,16 +1,23 @@
+//React
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+//Components
 import ShwSpinner from "../components/spinners/ShwSpinner";
 import SidebarFilter from "../components/sidebar/SidebarFilter";
 import ActionBarWarningSentencesOverview from '../components/actions/ActionBarWarningSentencesOverview';
 import RenameWarningSentenceModal from '../components/modals/RenameWarningSentenceModal';
 import CopyWarningSentenceModal from '../components/modals/CopyWarningSentenceModal';
 import DeleteWarningSentenceModal from '../components/modals/DeleteWarningSentenceModal';
-import warningSentenceService from "../services/warningSentenceService";
+
+//React Bootstrap
 import { Table } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
+//Services
+import warningSentenceService from "../services/warningSentenceService";
 
 const WarningSentenceOverview = () => {
     const [warningSentences, setWarningSentences] = useState([]);
@@ -219,14 +226,17 @@ const WarningSentenceOverview = () => {
             <RenameWarningSentenceModal
                 isOpen={isEditModalOpen}
                 closeModal={closeEditModal}
+                content={checkedWarningSentences}
             />
             <CopyWarningSentenceModal
                 isOpen={isCopyModalOpen}
                 closeModal={closeCopyModal}
+                content={checkedWarningSentences}
             />
             <DeleteWarningSentenceModal
                 isOpen={isDeleteModalOpen}
                 closeModal={closeDeleteModal}
+                content={checkedWarningSentences}
             />
         </div>
     )

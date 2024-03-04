@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+// Services
+import warningSentenceModalService from '../../services/warningSentenceModalService';
 
 const customStyles = {
     content: {
@@ -18,8 +21,30 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const RenameWarningSentenceModal = ({ isOpen, closeModal }) => {
+const RenameWarningSentenceModal = ({ isOpen, closeModal, content }) => {
     const [inputValue, setInputValue] = useState('');
+    const [warningSentence, setWarningSentence] = useState({});
+
+    useEffect(() => {
+        if (isOpen) {
+            const checkedSentenceIds = Object.entries(content)
+                .filter(([id, isChecked]) => isChecked)
+                .map(([id, isChecked]) => id);
+
+            if (checkedSentenceIds.length === 1) {
+                const fetchData = async () => {
+                    try {
+                        const response = await warningSentenceModalService.getRenameContent(checkedSentenceIds[0]);
+                        setWarningSentence(response);
+                        setInputValue(response.code);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                };
+                fetchData();
+            }
+        }
+    }, [isOpen, content]);
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
@@ -42,7 +67,7 @@ const RenameWarningSentenceModal = ({ isOpen, closeModal }) => {
                 <input
                     className="form-control form-select-md"
                     type="text"
-                    placeholder=" "
+                    placeholder=""
                     aria-label=".form-control-lg example"
                     value={inputValue}
                     onChange={handleInputChange}
