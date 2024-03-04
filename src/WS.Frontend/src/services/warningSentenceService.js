@@ -42,12 +42,22 @@ const warningSentenceService = () => {
         }
     };
 
+    const deleteWarningSentences = async (warningSentenceIds) => {
+        try {
+            const queryParams = warningSentenceIds.map(id => `ids=${id}`).join('&');
+            const response = await axios.delete(`${URL}/WarningSentence/delete?${queryParams}`);
+            return response.data;
+        } catch (error) {
+            throw new Error('Error deleting warning sentence');
+        }
+    };
 
     return {
         getAllWarningSentences,
         getWarningSentenceById,
         renameWarningSentence,
-        copyWarningSentences
+        copyWarningSentences,
+        deleteWarningSentences
     };
 };
 

@@ -71,7 +71,7 @@ const CopyWarningSentenceModal = ({ isOpen, closeModal, content, onCopy }) => {
             isOpen={isOpen}
             onRequestClose={closeModal}
             style={customStyles}
-            contentLabel="Edit Warning Sentence Modal"
+            contentLabel="Delete Warning Sentence Modal"
         >
             <div className="modal-top-section">
                 <h5 className="modal-header">Kopier H-sætning(er)</h5>
