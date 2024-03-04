@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WS.Core.Interfaces.AggregateServices;
 using WS.Core.Interfaces.DomainServices;
 using WS.Core.Interfaces.Repositories;
 using WS.Core.Services;
@@ -36,12 +37,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Build repositories
-builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
+builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfReadRepository<>));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
 
 //Build services
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IWarningSentenceService, WarningSentenceService>();
+builder.Services.AddScoped<IWarningSentenceAggregateService, WarningSentenceAggregateService>();
 
 builder.Services.AddScoped<IProductViewModelService, ProductViewModelService>();
 builder.Services.AddScoped<IWarningSentenceViewModelService, WarningSentenceViewModelService>();
