@@ -43,11 +43,21 @@ const warningSentenceModalService = () => {
         }
     };
 
+    const getEditContent = async (id) => {
+        try {
+            const response = await axios.get(`${URL}/warningsentence/modal/edit/${id}`)
+            return response.data
+        } catch (error) {
+            throw new Error('Error fetching modal content');
+        }
+    };
+
     return {
         getRenameContent,
         getCopyContent,
         getDeleteContent,
-        getCreateContent
+        getCreateContent,
+        getEditContent
     };
 };
 

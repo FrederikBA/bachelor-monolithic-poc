@@ -30,7 +30,6 @@ const WarningSentenceView = () => {
             try {
                 const response = await warningSentenceService.getWarningSentenceById(sentenceId);
                 setWarningSentence(response);
-                console.log(response);
             } catch (error) {
                 console.log(error);
             } finally {
@@ -42,10 +41,6 @@ const WarningSentenceView = () => {
 
         fetchData();
     }, [sentenceId]);
-
-    const editWarningSentence = () => {
-        console.log("Edit button pressed");
-    }
 
     const navigateBack = () => {
         navigate('/warningsentences')
@@ -82,7 +77,6 @@ const WarningSentenceView = () => {
     return (
         <div>
             <ActionBarWarningSentencesView
-                editAction={editWarningSentence}
                 backAction={navigateBack}
                 openEditModal={openEditModal}
             />
@@ -128,6 +122,7 @@ const WarningSentenceView = () => {
                 onEdit={refreshView}
                 notifySuccess={notifySuccess}
                 notifyError={notifyError}
+                sentenceId={sentenceId}
                 content={warningSentence}
             />
             <ToastContainer />

@@ -3,7 +3,7 @@ import { ReactComponent as BackIcon } from "../../assets/backicon.svg";
 import ActionButton from "./ActionButton";
 import ActionBarDivision from "./ActionBarDivision"
 
-const ActionBarWarningSentencesView = ({ editAction, backAction, openEditModal }) => {
+const ActionBarWarningSentencesView = ({ backAction, openEditModal }) => {
     return (
         <div className="action-bar" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
             <ActionButton icon={<EditIcon />} text="Rediger" action={openEditModal} />

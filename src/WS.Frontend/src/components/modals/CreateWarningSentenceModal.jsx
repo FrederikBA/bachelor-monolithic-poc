@@ -55,7 +55,6 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
     const handleInput = (event) => {
         const { id, value } = event.target;
         setWarningSentence({ ...warningSentence, [id]: value });
-        console.log(warningSentence);
     };
 
     const handlePictogramSelection = (warningPictogramId) => {
@@ -64,7 +63,6 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
             warningPictogramId: warningPictogramId
         }));
         setSelectedPictogram(warningPictogramId);
-        console.log(warningSentence);
     };
 
 

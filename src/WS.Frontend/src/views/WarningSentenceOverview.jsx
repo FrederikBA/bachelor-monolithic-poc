@@ -104,10 +104,6 @@ const WarningSentenceOverview = () => {
         const checkedSentenceIds = Object.entries(checkedWarningSentences)
             .filter(([id, isChecked]) => isChecked)
             .map(([id, isChecked]) => id);
-
-        if (checkedSentenceIds.length > 0) {
-            console.log("Selected warning sentence IDs:", checkedSentenceIds);
-        }
     };
 
     const navigateToWarningSentence = (id) => {

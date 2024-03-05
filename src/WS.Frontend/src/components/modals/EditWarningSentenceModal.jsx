@@ -27,7 +27,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, notifyError, content }) => {
+const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, notifyError, sentenceId, content }) => {
     const [warningSentence, setWarningSentence] = useState({ code: "", text: "", warningTypeId: 2, warningCategoryId: 0, warningPictogramId: 0, warningSignalWordId: 0 });
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedPictogram, setSelectedPictogram] = useState('');
@@ -36,13 +36,30 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
     const [pictograms, setPictograms] = useState([]);
     const [signalWords, setSignalWords] = useState([]);
 
+    // useEffect(() => {
+    //     if (isOpen) {
+    //         const fetchData = async () => {
+    //             try {
+    //                 const response = await warningSentenceModalService.getEditContent(sentenceId);
+    //                 setCategories(response.warningCategories);
+    //                 setWarningSentence({ code: content.code, text: content.text, warningTypeId: 2, warningCategoryId: content.warningCategory.id, warningPictogramId: content.warningPictogram.id, warningSignalWordId: content.warningSignalWord.id })
+    //                 setPictograms(response.warningPictograms)
+    //                 setSignalWords(response.warningSignalWords)
+    //             } catch (error) {
+    //                 console.log(error);
+    //             }
+    //         };
+    //         fetchData();
+    //     }
+    // }, []);
+
     useEffect(() => {
         if (isOpen) {
             const fetchData = async () => {
                 try {
-                    const response = await warningSentenceModalService.getCreateContent();
-                    setCategories(response.warningCategories);
+                    const response = await warningSentenceModalService.getEditContent(sentenceId);
                     setWarningSentence({ code: content.code, text: content.text, warningTypeId: 2, warningCategoryId: content.warningCategory.id, warningPictogramId: content.warningPictogram.id, warningSignalWordId: content.warningSignalWord.id })
+                    setCategories(response.warningCategories);
                     setPictograms(response.warningPictograms)
                     setSignalWords(response.warningSignalWords)
                 } catch (error) {
@@ -51,13 +68,12 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
             };
             fetchData();
         }
-    }, []);
+    }, [isOpen, sentenceId]);
 
 
     const handleInput = (event) => {
         const { id, value } = event.target;
         setWarningSentence({ ...warningSentence, [id]: value });
-        console.log(warningSentence);
     };
 
     const handlePictogramSelection = (warningPictogramId) => {
@@ -66,7 +82,6 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
             warningPictogramId: warningPictogramId
         }));
         setSelectedPictogram(warningPictogramId);
-        console.log(warningSentence);
     };
 
 
