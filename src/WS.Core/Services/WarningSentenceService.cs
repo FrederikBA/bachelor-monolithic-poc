@@ -157,8 +157,24 @@ public class WarningSentenceService : IWarningSentenceService
         return true;
     }
 
-    public Task<WarningSentence> UpdateWarningSentenceAsync(int id, WarningSentenceDto warningSentenceDto)
+    public async Task<WarningSentence> UpdateWarningSentenceAsync(int id, WarningSentenceDto warningSentenceDto)
     {
-        throw new NotImplementedException();
+        var warningSentence = await _warningSentenceReadRepository.GetByIdAsync(id);
+        
+        if (warningSentence == null)
+        {
+            throw new WarningSentenceNotFoundException(id);
+        }
+        
+        //Update the warning sentence
+        warningSentence.Code = warningSentenceDto.Code;
+        warningSentence.Text = warningSentenceDto.Text;
+        warningSentence.WarningCategoryId = warningSentenceDto.WarningCategoryId;
+        warningSentence.WarningSignalWordId = warningSentenceDto.WarningSignalWordId;
+        warningSentence.WarningPictogramId = warningSentenceDto.WarningPictogramId;
+        
+        await _warningSentenceRepository.UpdateAsync(warningSentence);
+        
+        return warningSentence;
     }
 }
