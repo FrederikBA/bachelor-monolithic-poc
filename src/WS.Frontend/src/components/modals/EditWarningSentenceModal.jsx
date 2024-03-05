@@ -103,7 +103,7 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
         >
             <Container>
                 <div className="modal-top-section">
-                    <h5 className="modal-header">Opret H-sætning</h5>
+                    <h5 className="modal-header">Rediger H-sætning</h5>
                     <div className="close-icon" onClick={closeModal}>
                         <FontAwesomeIcon icon={faTimes} />
                     </div>
@@ -154,7 +154,7 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
                                         value={warningSentence.warningCategoryId}
                                         onChange={handleInput}
                                     >
-                                        <option value="">Vælg kategory</option>
+                                        <option value="">Vælg kategori</option>
                                         {categories.map(category => (
                                             <option key={category.id} value={category.id}>{category.text}</option>
                                         ))}

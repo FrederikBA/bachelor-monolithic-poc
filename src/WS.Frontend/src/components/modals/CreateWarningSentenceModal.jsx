@@ -134,7 +134,7 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
                                         value={selectedCategory}
                                         onChange={(e) => setSelectedCategory(e.target.value)}
                                     >
-                                        <option value="">Vælg kategory</option>
+                                        <option value="">Vælg kategori</option>
                                         {categories.map(category => (
                                             <option key={category.id} value={category.id}>{category.text}</option>
                                         ))}
