@@ -12,4 +12,5 @@ public interface IWarningSentenceService
     Task<IEnumerable<WarningSentence>> CloneWarningSentenceAsync(List<int> ids);
     Task<WarningSentence> RenameWarningSentenceAsync(int id, string renameTo);
     Task<bool> DeleteWarningSentenceAsync(List<int> ids);
+    Task<WarningSentence> UpdateWarningSentenceAsync(int id, WarningSentenceDto warningSentenceDto);
 }

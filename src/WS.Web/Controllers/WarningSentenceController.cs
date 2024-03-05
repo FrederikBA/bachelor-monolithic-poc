@@ -53,6 +53,13 @@ public class WarningSentenceController : ControllerBase
         return Ok(warningSentence);
     }
     
+    [HttpPut("update/{id}")]
+    public async Task<IActionResult> UpdateWarningSentence(int id, WarningSentenceDto warningSentenceDto)
+    {
+        var warningSentence = await _warningSentenceService.UpdateWarningSentenceAsync(id, warningSentenceDto);
+        return Ok(warningSentence);
+    }
+    
     [HttpDelete("delete")]
     public async Task<IActionResult> DeleteWarningSentence([FromQuery]List<int> ids)
     {
