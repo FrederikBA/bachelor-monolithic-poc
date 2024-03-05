@@ -156,4 +156,9 @@ public class WarningSentenceService : IWarningSentenceService
 
         return true;
     }
+
+    public Task<WarningSentence> UpdateWarningSentenceAsync(int id, WarningSentenceDto warningSentenceDto)
+    {
+        throw new NotImplementedException();
+    }
 }
