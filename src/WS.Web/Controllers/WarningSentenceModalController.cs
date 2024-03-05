@@ -20,6 +20,13 @@ public class WarningSentenceModalController : ControllerBase
         var warningSentence = await _warningSentenceModalService.GetCreateFormModalAsync();
         return Ok(warningSentence);
     }
+    
+    [HttpGet("edit/{id}")]
+    public async Task<IActionResult> GetEditModalContent(int id)
+    {
+        var warningSentence = await _warningSentenceModalService.GetEditFormModalAsync(id);
+        return Ok(warningSentence);
+    }
 
     [HttpGet("rename/{id}")]
     public async Task<IActionResult> GetRenameModalContent(int id)
