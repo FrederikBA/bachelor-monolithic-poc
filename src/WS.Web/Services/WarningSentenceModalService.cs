@@ -10,11 +10,13 @@ public class WarningSentenceModalService : IWarningSentenceModalService
 {
     private readonly IWarningSentenceService _warningSentenceService;
     private readonly IWarningSentenceAggregateService _warningSentenceAggregateService;
+    private readonly IWarningSentenceViewModelService _warningSentenceViewModelService;
 
-    public WarningSentenceModalService(IWarningSentenceService warningSentenceService, IWarningSentenceAggregateService warningSentenceAggregateService)
+    public WarningSentenceModalService(IWarningSentenceService warningSentenceService, IWarningSentenceAggregateService warningSentenceAggregateService, IWarningSentenceViewModelService warningSentenceViewModelService)
     {
         _warningSentenceService = warningSentenceService;
         _warningSentenceAggregateService = warningSentenceAggregateService;
+        _warningSentenceViewModelService = warningSentenceViewModelService;
     }
 
     public async Task<WarningSentenceBaseViewModel> GetWarningSentenceModalAsync(int id)
@@ -69,5 +71,40 @@ public class WarningSentenceModalService : IWarningSentenceModalService
                 SignalWordText = warningSignalWord.SignalWordText
             }).ToList()
         };
+    }
+
+    public async Task<WarningSentenceEditFormViewModel> GetEditFormModalAsync(int id)
+    {
+        //Get the warning sentence form data (to choose from)
+        var warningCategories = await _warningSentenceAggregateService.GetAllWarningCategoriesAsync();
+        var warningPictograms = await _warningSentenceAggregateService.GetAllWarningPictogramsAsync();
+        var warningSignalWords = await _warningSentenceAggregateService.GetAllWarningSignalWordsAsync();
+        
+        //Map to form view models
+
+        var viewModel = new WarningSentenceEditFormViewModel
+        {
+            //Get the warning sentence to edit to fill in the form
+            WarningSentence = await _warningSentenceViewModelService.GetWarningSentenceViewModel(id),
+            WarningCategories = warningCategories.Select(warningCategory => new WarningCategoryFormViewModel
+            {
+                Id = warningCategory.Id,
+                Text = warningCategory.Text
+            }).ToList(),
+            WarningPictograms = warningPictograms.Select(warningPictogram => new WarningPictogramFormViewModel
+            {
+                Id = warningPictogram.Id,
+                Code = warningPictogram.Code,
+                Text = warningPictogram.Text,
+                Pictogram = warningPictogram.Pictogram,
+                Extension = warningPictogram.Extension
+            }).ToList(),
+            WarningSignalWords = warningSignalWords.Select(warningSignalWord => new WarningSignalWordFormViewModel
+            {
+                Id = warningSignalWord.Id,
+                SignalWordText = warningSignalWord.SignalWordText
+            }).ToList()
+        };
+        return viewModel;
     }
 }
