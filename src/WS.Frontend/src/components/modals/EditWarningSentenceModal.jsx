@@ -27,8 +27,15 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySuccess, notifyError }) => {
-    const [warningSentence, setWarningSentence] = useState({ code: "", text: "", warningTypeId: 2, warningCategoryId: 0, warningPictogramId: 0, warningSignalWordId: 0 });
+const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, notifyError, sentenceId, content }) => {
+    const [warningSentence, setWarningSentence] = useState({
+        code: "",
+        text: "",
+        warningTypeId: 2,
+        warningCategoryId: 0,
+        warningPictogramId: 0,
+        warningSignalWordId: 0
+    });
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedPictogram, setSelectedPictogram] = useState('');
     const [selectedSignalWord, setSelectedSignalWord] = useState('');
@@ -40,17 +47,28 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
         if (isOpen) {
             const fetchData = async () => {
                 try {
-                    const response = await warningSentenceModalService.getCreateContent();
+                    const response = await warningSentenceModalService.getEditContent(sentenceId);
                     setCategories(response.warningCategories);
-                    setPictograms(response.warningPictograms)
-                    setSignalWords(response.warningSignalWords)
+                    setWarningSentence({
+                        code: content.code || "",
+                        text: content.text || "",
+                        warningTypeId: 2,
+                        warningCategoryId: content.warningCategory ? content.warningCategory.id : 0,
+                        warningPictogramId: content.warningPictogram ? content.warningPictogram.id : 0,
+                        warningSignalWordId: content.warningSignalWord ? content.warningSignalWord.id : 0
+                    });
+                    setPictograms(response.warningPictograms);
+                    setSignalWords(response.warningSignalWords);
+
+                    // Select the correct pictogram
+                    setSelectedPictogram(content.warningPictogram ? content.warningPictogram.id : 0);
                 } catch (error) {
                     console.log(error);
                 }
             };
             fetchData();
         }
-    }, [isOpen]);
+    }, [isOpen, sentenceId, content]);
 
     const handleInput = (event) => {
         const { id, value } = event.target;
@@ -65,12 +83,11 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
         setSelectedPictogram(warningPictogramId);
     };
 
-
-    const createWarningSentence = async () => {
+    const editWarningSentence = async () => {
         try {
-            await warningSentenceService.createWarningSentence(warningSentence)
-            notifySuccess("H-sætning oprettet.")
-            onCreate();
+            await warningSentenceService.editWarningSentence(sentenceId, warningSentence)
+            notifySuccess("H-sætning opdateret.")
+            onEdit();
             closeModal();
         } catch (error) {
             notifyError('Der opstod en fejl.');
@@ -82,17 +99,17 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
             isOpen={isOpen}
             onRequestClose={closeModal}
             style={customStyles}
-            contentLabel="Create Warning Sentence Modal"
+            contentLabel="Edit Warning Sentence Modal"
         >
             <Container>
                 <div className="modal-top-section">
-                    <h5 className="modal-header">Opret H-sætning</h5>
+                    <h5 className="modal-header">Rediger H-sætning</h5>
                     <div className="close-icon" onClick={closeModal}>
                         <FontAwesomeIcon icon={faTimes} />
                     </div>
                 </div>
                 <div className="modal-middle-section">
-                    <form onChange={handleInput}>
+                    <form>
                         <Row className="modal-row">
                             <input
                                 className="form-control form-select-md create-input"
@@ -100,6 +117,8 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
                                 type="text"
                                 placeholder="H-sætning"
                                 aria-label=".form-control-lg example"
+                                value={warningSentence.code}
+                                onChange={handleInput}
                             />
                             <input
                                 className="form-control form-select-md create-input"
@@ -107,6 +126,8 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
                                 type="text"
                                 placeholder="Ordlyd af H-sætning"
                                 aria-label=".form-control-lg example"
+                                value={warningSentence.text}
+                                onChange={handleInput}
                             />
                         </Row>
                         <Row className="modal-row">
@@ -116,7 +137,7 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
                                         {pictograms.map(pictogram => (
                                             <img
                                                 key={pictogram.id}
-                                                src={`pictograms/${pictogram.pictogram}.${pictogram.extension}`}
+                                                src={`../pictograms/${pictogram.pictogram}.${pictogram.extension}`}
                                                 alt={pictogram.code}
                                                 className={selectedPictogram === pictogram.id ? 'selected' : ''}
                                                 onClick={() => handlePictogramSelection(pictogram.id)}
@@ -124,15 +145,14 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
                                         ))}
                                     </div>
                                 </div>
-
                             </Col>
                             <Col>
                                 <div className="create-select">
                                     <select
                                         className="form-control form-select-md"
                                         id="warningCategoryId"
-                                        value={selectedCategory}
-                                        onChange={(e) => setSelectedCategory(e.target.value)}
+                                        value={warningSentence.warningCategoryId}
+                                        onChange={handleInput}
                                     >
                                         <option value="">Vælg kategori</option>
                                         {categories.map(category => (
@@ -146,8 +166,8 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
                                     <select
                                         className="form-control form-select-md"
                                         id="warningSignalWordId"
-                                        value={selectedSignalWord}
-                                        onChange={(e) => setSelectedSignalWord(e.target.value)}
+                                        value={warningSentence.warningSignalWordId}
+                                        onChange={handleInput}
                                     >
                                         <option value="">Vælg signalord</option>
                                         {signalWords.map(signalWord => (
@@ -160,11 +180,11 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
                     </form>
                 </div>
                 <div className="modal-bottom-section">
-                    <button onClick={createWarningSentence} className="right btn btn-outline-primary">Gem</button>
+                    <button onClick={editWarningSentence} className="right btn btn-outline-primary">Gem</button>
                 </div>
             </Container>
         </Modal >
     );
 };
 
-export default CreateWarningSentenceModal;
+export default EditWarningSentenceModal;

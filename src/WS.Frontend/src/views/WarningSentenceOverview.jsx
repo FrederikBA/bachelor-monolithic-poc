@@ -27,7 +27,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const WarningSentenceOverview = () => {
     const [warningSentences, setWarningSentences] = useState([]);
     const [checkedWarningSentences, setCheckedWarningSentences] = useState({});
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isRenameModalOpen, setIsRenameModalOpen] = useState(false);
     const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -104,10 +104,6 @@ const WarningSentenceOverview = () => {
         const checkedSentenceIds = Object.entries(checkedWarningSentences)
             .filter(([id, isChecked]) => isChecked)
             .map(([id, isChecked]) => id);
-
-        if (checkedSentenceIds.length > 0) {
-            console.log("Selected warning sentence IDs:", checkedSentenceIds);
-        }
     };
 
     const navigateToWarningSentence = (id) => {
@@ -134,12 +130,12 @@ const WarningSentenceOverview = () => {
     };
 
     // Modals
-    const openEditModal = () => {
-        setIsEditModalOpen(true);
+    const openRenameModal = () => {
+        setIsRenameModalOpen(true);
     };
 
-    const closeEditModal = () => {
-        setIsEditModalOpen(false);
+    const closeRenameModal = () => {
+        setIsRenameModalOpen(false);
     };
 
     const openCopyModal = () => {
@@ -197,7 +193,7 @@ const WarningSentenceOverview = () => {
                 selectAllAction={handleSelectAllClick}
                 hasCheckedSentences={Object.values(checkedWarningSentences).some(value => value)}
                 isEditEnabled={isEditEnabled}
-                openEditModal={openEditModal}
+                openRenameModal={openRenameModal}
                 openCopyModal={openCopyModal}
                 openDeleteModal={openDeleteModal}
                 openCreateModal={openCreateModal}
@@ -263,8 +259,8 @@ const WarningSentenceOverview = () => {
             </Container >
             {/* Modal components */}
             <RenameWarningSentenceModal
-                isOpen={isEditModalOpen}
-                closeModal={closeEditModal}
+                isOpen={isRenameModalOpen}
+                closeModal={closeRenameModal}
                 content={checkedWarningSentences}
                 onRename={refreshOverview}
                 notifySuccess={notifySuccess}

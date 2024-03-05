@@ -61,6 +61,15 @@ const warningSentenceService = () => {
         }
     };
 
+    const editWarningSentence = async (id, warningSentence) => {
+        try {
+            const response = await axios.put(`${URL}/WarningSentence/update/${id}`, warningSentence);
+            return response.data;
+        } catch (error) {
+            throw new Error('Error updating warning sentence');
+        }
+    };
+
 
     return {
         getAllWarningSentences,
@@ -68,7 +77,8 @@ const warningSentenceService = () => {
         renameWarningSentence,
         copyWarningSentences,
         deleteWarningSentences,
-        createWarningSentence
+        createWarningSentence,
+        editWarningSentence
     };
 };
 
