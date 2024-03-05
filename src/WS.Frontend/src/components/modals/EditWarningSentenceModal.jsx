@@ -28,7 +28,14 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, notifyError, sentenceId, content }) => {
-    const [warningSentence, setWarningSentence] = useState({ code: "", text: "", warningTypeId: 2, warningCategoryId: 0, warningPictogramId: 0, warningSignalWordId: 0 });
+    const [warningSentence, setWarningSentence] = useState({
+        code: "",
+        text: "",
+        warningTypeId: 2,
+        warningCategoryId: 0,
+        warningPictogramId: 0,
+        warningSignalWordId: 0
+    });
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedPictogram, setSelectedPictogram] = useState('');
     const [selectedSignalWord, setSelectedSignalWord] = useState('');
@@ -36,40 +43,32 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
     const [pictograms, setPictograms] = useState([]);
     const [signalWords, setSignalWords] = useState([]);
 
-    // useEffect(() => {
-    //     if (isOpen) {
-    //         const fetchData = async () => {
-    //             try {
-    //                 const response = await warningSentenceModalService.getEditContent(sentenceId);
-    //                 setCategories(response.warningCategories);
-    //                 setWarningSentence({ code: content.code, text: content.text, warningTypeId: 2, warningCategoryId: content.warningCategory.id, warningPictogramId: content.warningPictogram.id, warningSignalWordId: content.warningSignalWord.id })
-    //                 setPictograms(response.warningPictograms)
-    //                 setSignalWords(response.warningSignalWords)
-    //             } catch (error) {
-    //                 console.log(error);
-    //             }
-    //         };
-    //         fetchData();
-    //     }
-    // }, []);
-
     useEffect(() => {
         if (isOpen) {
             const fetchData = async () => {
                 try {
                     const response = await warningSentenceModalService.getEditContent(sentenceId);
-                    setWarningSentence({ code: content.code, text: content.text, warningTypeId: 2, warningCategoryId: content.warningCategory.id, warningPictogramId: content.warningPictogram.id, warningSignalWordId: content.warningSignalWord.id })
                     setCategories(response.warningCategories);
-                    setPictograms(response.warningPictograms)
-                    setSignalWords(response.warningSignalWords)
+                    setWarningSentence({
+                        code: content.code || "",
+                        text: content.text || "",
+                        warningTypeId: 2,
+                        warningCategoryId: content.warningCategory ? content.warningCategory.id : 0,
+                        warningPictogramId: content.warningPictogram ? content.warningPictogram.id : 0,
+                        warningSignalWordId: content.warningSignalWord ? content.warningSignalWord.id : 0
+                    });
+                    setPictograms(response.warningPictograms);
+                    setSignalWords(response.warningSignalWords);
+
+                    // Select the correct pictogram
+                    setSelectedPictogram(content.warningPictogram ? content.warningPictogram.id : 0);
                 } catch (error) {
                     console.log(error);
                 }
             };
             fetchData();
         }
-    }, [isOpen, sentenceId]);
-
+    }, [isOpen, sentenceId, content]);
 
     const handleInput = (event) => {
         const { id, value } = event.target;
@@ -83,7 +82,6 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
         }));
         setSelectedPictogram(warningPictogramId);
     };
-
 
     const editWarningSentence = async () => {
         try {
@@ -111,7 +109,7 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
                     </div>
                 </div>
                 <div className="modal-middle-section">
-                    <form onChange={handleInput}>
+                    <form>
                         <Row className="modal-row">
                             <input
                                 className="form-control form-select-md create-input"
@@ -119,6 +117,8 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
                                 type="text"
                                 placeholder="H-sætning"
                                 aria-label=".form-control-lg example"
+                                value={warningSentence.code}
+                                onChange={handleInput}
                             />
                             <input
                                 className="form-control form-select-md create-input"
@@ -126,6 +126,8 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
                                 type="text"
                                 placeholder="Ordlyd af H-sætning"
                                 aria-label=".form-control-lg example"
+                                value={warningSentence.text}
+                                onChange={handleInput}
                             />
                         </Row>
                         <Row className="modal-row">
@@ -143,15 +145,14 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
                                         ))}
                                     </div>
                                 </div>
-
                             </Col>
                             <Col>
                                 <div className="create-select">
                                     <select
                                         className="form-control form-select-md"
                                         id="warningCategoryId"
-                                        value={selectedCategory}
-                                        onChange={(e) => setSelectedCategory(e.target.value)}
+                                        value={warningSentence.warningCategoryId}
+                                        onChange={handleInput}
                                     >
                                         <option value="">Vælg kategory</option>
                                         {categories.map(category => (
@@ -165,8 +166,8 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
                                     <select
                                         className="form-control form-select-md"
                                         id="warningSignalWordId"
-                                        value={selectedSignalWord}
-                                        onChange={(e) => setSelectedSignalWord(e.target.value)}
+                                        value={warningSentence.warningSignalWordId}
+                                        onChange={handleInput}
                                     >
                                         <option value="">Vælg signalord</option>
                                         {signalWords.map(signalWord => (
