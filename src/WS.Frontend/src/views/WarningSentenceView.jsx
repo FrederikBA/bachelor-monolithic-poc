@@ -61,15 +61,10 @@ const WarningSentenceView = () => {
     };
 
     //Modal Functions
-    const refreshOverview = async () => {
+    const refreshView = async () => {
         try {
-            const response = await warningSentenceService.getAllWarningSentences();
-            response.sort((a, b) => {
-                if (a.code < b.code) return -1;
-                if (a.code > b.code) return 1;
-                return 0;
-            });
-            setWarningSentences(response);
+            const response = await warningSentenceService.getWarningSentenceById(sentenceId);
+            setWarningSentence(response);
         } catch (error) {
             console.log(error);
         }
@@ -130,9 +125,10 @@ const WarningSentenceView = () => {
             <EditWarningSentenceModal
                 isOpen={isEditModalOpen}
                 closeModal={closeEditModal}
-                onEdit={refreshOverview}
+                onEdit={refreshView}
                 notifySuccess={notifySuccess}
                 notifyError={notifyError}
+                content={warningSentence}
             />
             <ToastContainer />
         </div>

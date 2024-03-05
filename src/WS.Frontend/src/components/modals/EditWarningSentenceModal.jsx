@@ -27,7 +27,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, notifyError }) => {
+const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, notifyError, content }) => {
     const [warningSentence, setWarningSentence] = useState({ code: "", text: "", warningTypeId: 2, warningCategoryId: 0, warningPictogramId: 0, warningSignalWordId: 0 });
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedPictogram, setSelectedPictogram] = useState('');
@@ -42,6 +42,7 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
                 try {
                     const response = await warningSentenceModalService.getCreateContent();
                     setCategories(response.warningCategories);
+                    setWarningSentence({ code: content.code, text: content.text, warningTypeId: 2, warningCategoryId: content.warningCategory.id, warningPictogramId: content.warningPictogram.id, warningSignalWordId: content.warningSignalWord.id })
                     setPictograms(response.warningPictograms)
                     setSignalWords(response.warningSignalWords)
                 } catch (error) {
@@ -50,7 +51,8 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
             };
             fetchData();
         }
-    }, [isOpen]);
+    }, []);
+
 
     const handleInput = (event) => {
         const { id, value } = event.target;
@@ -72,7 +74,7 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
         try {
             // await warningSentenceService.createWarningSentence(warningSentence)
             notifySuccess("H-sætning ændret.")
-            // onEdit();
+            onEdit();
             closeModal();
         } catch (error) {
             notifyError('Der opstod en fejl.');
