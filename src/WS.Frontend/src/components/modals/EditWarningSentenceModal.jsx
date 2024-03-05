@@ -85,8 +85,8 @@ const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, n
 
     const editWarningSentence = async () => {
         try {
-            // await warningSentenceService.createWarningSentence(warningSentence)
-            notifySuccess("H-sætning ændret.")
+            await warningSentenceService.editWarningSentence(sentenceId, warningSentence)
+            notifySuccess("H-sætning opdateret.")
             onEdit();
             closeModal();
         } catch (error) {

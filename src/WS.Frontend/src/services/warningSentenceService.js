@@ -63,7 +63,7 @@ const warningSentenceService = () => {
 
     const editWarningSentence = async (id, warningSentence) => {
         try {
-            const response = await axios.post(`${URL}/WarningSentence/edit/${id}`, warningSentence);
+            const response = await axios.put(`${URL}/WarningSentence/update/${id}`, warningSentence);
             return response.data;
         } catch (error) {
             throw new Error('Error updating warning sentence');
