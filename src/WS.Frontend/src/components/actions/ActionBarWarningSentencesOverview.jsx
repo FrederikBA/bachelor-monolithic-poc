@@ -6,11 +6,11 @@ import { ReactComponent as EditIcon } from "../../assets/editicon.svg";
 import ActionButton from "./ActionButton";
 import ActionBarDivision from "./ActionBarDivision"
 
-const ActionBarWarningSentencesOverview = ({ selectAllAction, action, hasCheckedSentences, isEditEnabled, openEditModal, openCopyModal, openDeleteModal, openCreateModal }) => {
+const ActionBarWarningSentencesOverview = ({ selectAllAction, action, hasCheckedSentences, isEditEnabled, openRenameModal, openCopyModal, openDeleteModal, openCreateModal }) => {
     return (
         <div className="action-bar" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
             <ActionButton icon={<NewIcon />} text="Ny H-sætning" action={openCreateModal} />
-            <ActionButton icon={<EditIcon />} text="Omdøb" action={openEditModal} disabled={!isEditEnabled} />
+            <ActionButton icon={<EditIcon />} text="Omdøb" action={openRenameModal} disabled={!isEditEnabled} />
             <ActionButton icon={<CloneIcon />} text="Kopier" action={openCopyModal} disabled={!hasCheckedSentences} />
             <ActionButton icon={<DeleteIcon />} text="Slet" action={openDeleteModal} disabled={!hasCheckedSentences} />
             <ActionBarDivision />

@@ -27,7 +27,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySuccess, notifyError }) => {
+const EditWarningSentenceModal = ({ isOpen, closeModal, onEdit, notifySuccess, notifyError }) => {
     const [warningSentence, setWarningSentence] = useState({ code: "", text: "", warningTypeId: 2, warningCategoryId: 0, warningPictogramId: 0, warningSignalWordId: 0 });
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedPictogram, setSelectedPictogram] = useState('');
@@ -68,11 +68,11 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
     };
 
 
-    const createWarningSentence = async () => {
+    const editWarningSentence = async () => {
         try {
-            await warningSentenceService.createWarningSentence(warningSentence)
-            notifySuccess("H-sætning oprettet.")
-            onCreate();
+            // await warningSentenceService.createWarningSentence(warningSentence)
+            notifySuccess("H-sætning ændret.")
+            // onEdit();
             closeModal();
         } catch (error) {
             notifyError('Der opstod en fejl.');
@@ -84,7 +84,7 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
             isOpen={isOpen}
             onRequestClose={closeModal}
             style={customStyles}
-            contentLabel="Create Warning Sentence Modal"
+            contentLabel="Edit Warning Sentence Modal"
         >
             <Container>
                 <div className="modal-top-section">
@@ -118,7 +118,7 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
                                         {pictograms.map(pictogram => (
                                             <img
                                                 key={pictogram.id}
-                                                src={`pictograms/${pictogram.pictogram}.${pictogram.extension}`}
+                                                src={`../pictograms/${pictogram.pictogram}.${pictogram.extension}`}
                                                 alt={pictogram.code}
                                                 className={selectedPictogram === pictogram.id ? 'selected' : ''}
                                                 onClick={() => handlePictogramSelection(pictogram.id)}
@@ -162,11 +162,11 @@ const CreateWarningSentenceModal = ({ isOpen, closeModal, onCreate, notifySucces
                     </form>
                 </div>
                 <div className="modal-bottom-section">
-                    <button onClick={createWarningSentence} className="right btn btn-outline-primary">Gem</button>
+                    <button onClick={editWarningSentence} className="right btn btn-outline-primary">Gem</button>
                 </div>
             </Container>
         </Modal >
     );
 };
 
-export default CreateWarningSentenceModal;
+export default EditWarningSentenceModal;
