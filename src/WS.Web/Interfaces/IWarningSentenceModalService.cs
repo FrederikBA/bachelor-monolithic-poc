@@ -1,5 +1,5 @@
 using WS.Web.ViewModels.WarningSentence;
-using WS.Web.ViewModels.WarningSentence.CreateForm;
+using WS.Web.ViewModels.WarningSentence.Form;
 
 namespace WS.Web.Interfaces;
 

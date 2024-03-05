@@ -2,7 +2,7 @@ using WS.Core.Interfaces.AggregateServices;
 using WS.Core.Interfaces.DomainServices;
 using WS.Web.Interfaces;
 using WS.Web.ViewModels.WarningSentence;
-using WS.Web.ViewModels.WarningSentence.CreateForm;
+using WS.Web.ViewModels.WarningSentence.Form;
 
 namespace WS.Web.Services;
  
