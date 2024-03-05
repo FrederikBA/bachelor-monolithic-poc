@@ -1,4 +1,4 @@
-namespace WS.Web.ViewModels.WarningSentence.CreateForm;
+namespace WS.Web.ViewModels.WarningSentence.Form;
 
 public class WarningPictogramFormViewModel
 {
