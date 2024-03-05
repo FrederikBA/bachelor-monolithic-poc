@@ -26,6 +26,7 @@ public class WarningSentenceViewModelService : IWarningSentenceViewModelService
             //Warning Category
             WarningCategory = new WarningCategoryViewModel
             {
+                Id = warningSentence.WarningCategory!.Id,
                 Text = warningSentence.WarningCategory!.Text,
                 
                 //Warning Type
@@ -38,6 +39,7 @@ public class WarningSentenceViewModelService : IWarningSentenceViewModelService
             //Warning Pictogram
             WarningPictogram = new WarningPictogramViewModel
             {
+                Id = warningSentence.WarningPictogram!.Id,
                 Code = warningSentence.WarningPictogram!.Code,
                 Text = warningSentence.WarningPictogram!.Text,
                 Pictogram = warningSentence.WarningPictogram!.Pictogram,
@@ -47,6 +49,7 @@ public class WarningSentenceViewModelService : IWarningSentenceViewModelService
             //Warning Signal Word
             WarningSignalWord = new WarningSignalWordViewModel
             {
+                Id = warningSentence.WarningSignalWord!.Id,
                 SignalWordText = warningSentence.WarningSignalWord!.SignalWordText,
             }
         }).ToList();
@@ -67,6 +70,7 @@ public class WarningSentenceViewModelService : IWarningSentenceViewModelService
             //Warning Category
             WarningCategory = new WarningCategoryViewModel
             {
+                Id = warningSentenceEntity.WarningCategory!.Id,
                 Text = warningSentenceEntity.WarningCategory!.Text,
                 
                 //Warning Type
@@ -79,6 +83,7 @@ public class WarningSentenceViewModelService : IWarningSentenceViewModelService
             //Warning Pictogram
             WarningPictogram = new WarningPictogramViewModel
             {
+                Id = warningSentenceEntity.WarningPictogram!.Id,
                 Code = warningSentenceEntity.WarningPictogram!.Code,
                 Text = warningSentenceEntity.WarningPictogram!.Text,
                 Pictogram = warningSentenceEntity.WarningPictogram!.Pictogram,
@@ -88,6 +93,7 @@ public class WarningSentenceViewModelService : IWarningSentenceViewModelService
             //Warning Signal Word
             WarningSignalWord = new WarningSignalWordViewModel
             {
+                Id = warningSentenceEntity.WarningSignalWord!.Id,
                 SignalWordText = warningSentenceEntity.WarningSignalWord!.SignalWordText,
             }
         };
