@@ -10,8 +10,8 @@ const ActionBarWarningSentencesOverview = ({ selectAllAction, action, hasChecked
     return (
         <div className="action-bar" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
             <ActionButton icon={<NewIcon />} text="Ny H-sætning" action={openCreateModal} />
-            <ActionButton icon={<EditIcon />} text="Omdøb" action={openRenameModal} disabled={!isEditEnabled} />
-            <ActionButton icon={<CloneIcon />} text="Kopier" action={openCopyModal} disabled={!hasCheckedSentences} />
+            {/* <ActionButton icon={<EditIcon />} text="Omdøb" action={openRenameModal} disabled={!isEditEnabled} />
+            <ActionButton icon={<CloneIcon />} text="Kopier" action={openCopyModal} disabled={!hasCheckedSentences} /> */}
             <ActionButton icon={<DeleteIcon />} text="Slet" action={openDeleteModal} disabled={!hasCheckedSentences} />
             <ActionBarDivision />
             <ActionButton icon={<SelectAllIcon />} text="Vælg alle" action={selectAllAction} />
